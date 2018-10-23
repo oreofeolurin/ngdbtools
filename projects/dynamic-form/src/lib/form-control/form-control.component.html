@@ -1,0 +1,80 @@
+<div [formGroup]="form" class="form-group"
+     [hidden]="control.hidden"
+     [ngClass]="{
+      'is-dirty': (form.controls[control.key].dirty || form.dirty),
+      'has-errors': !form.controls[control.key].valid}">
+
+    <label *ngIf="control.label" [attr.for]="control.key" [ngClass]="{'important': control.required }">
+        {{control.label}}
+    </label>
+
+
+    <div [ngSwitch]="control.controlType">
+        <input *ngSwitchCase="'textbox'" [formControlName]="control.key" class="form-control"
+               [placeholder]="control['placeholder']"
+               [id]="control.key" [type]="control['type']" [min]="control['min']"
+               [autocomplete]="control['autoComplete']">
+
+        <textarea *ngSwitchCase="'textarea'" [formControlName]="control.key" class="form-control"
+                  [placeholder]="control['placeholder']"
+                  [id]="control.key"
+                  [rows]="control['rows']">
+        </textarea>
+
+
+        <input *ngSwitchCase="'currency'" [formControlName]="control.key" class="form-control"
+               [placeholder]="control['placeholder']"
+               [id]="control.key" currencyMask [options]="control['options']" [autocomplete]="control['autoComplete']">
+
+
+        <mat-select *ngSwitchCase="'dropdown'" [id]="control.key" [placeholder]="control['placeholder']"
+                    [formControlName]="control.key">
+            <mat-option *ngFor="let opt of control['options']" [value]="opt.key">
+                {{opt.value}}
+                <small>{{opt.description}}</small>
+            </mat-option>
+        </mat-select>
+
+
+        <ng-template [ngSwitchCase]="'autocomplete'">
+            <input type="text" class="form-control" [placeholder]="control['placeholder']" aria-label="Number" [formControlName]="control.key" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let opt of filteredOptions | async" [value]="opt">
+                    {{opt['value']}}
+                </mat-option>
+            </mat-autocomplete>
+        </ng-template>
+
+
+        <mat-radio-group [id]="control.key" *ngSwitchCase="'radio'"
+                         [formControlName]="control.key">
+            <mat-radio-button color="primary" *ngFor="let opt of control['options']" [value]="opt.key"> {{opt.value}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+
+        <input *ngSwitchCase="'calender'" class="form-control" [min]="control['min']" [max]="control['max']"
+               [matDatepicker]="picker" (focus)="picker.open()" [formControlName]="control.key"/>
+
+
+        <div *ngSwitchCase="'upload'">
+            <input class="d-none" (change)="fileChangeEvent($event)" id="input-file-{{control.key}}" type="file"
+                   accept="image/*, .pdf"/>
+            <div class="d-flex file-upload w-100">
+                <input disabled class="form-control" [formControlName]="control['fileNameKey']"/>
+                <input disabled class="form-control" [hidden]="true" [formControlName]="control.key"/>
+                <label for="input-file-{{control.key}}" class="btn btn-light">Choose file</label>
+            </div>
+        </div>
+
+
+        <div class="invalid-feedback">
+            {{control.invalidFeedback || control.label + ' is required' }}
+        </div>
+
+        <small class="form-text text-muted" [innerHtml]="control.helpText"></small>
+
+    </div>
+</div>
+
+<mat-datepicker #picker></mat-datepicker>

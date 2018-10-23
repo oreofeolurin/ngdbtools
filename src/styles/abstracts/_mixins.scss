@@ -1,0 +1,174 @@
+@import '~bootstrap/scss/_mixins';
+
+@mixin mat-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+    line-height: $size;
+}
+
+@mixin flex-column($direction: center) {
+    display: flex;
+    flex-direction: column;
+    justify-content: $direction;
+}
+
+@mixin italic() {
+    font-style: italic;
+    font-weight: 300;
+}
+
+// Overriding form-validation-state to include support for
+// angular validation via .ng-valid and .ng-invalid
+@mixin form-validation-state($state, $color) {
+    .#{$state}-feedback {
+        display: none;
+        width: 100%;
+        margin-top: $form-feedback-margin-top;
+        font-size: $form-feedback-font-size;
+        color: $color;
+    }
+
+    .#{$state}-tooltip {
+        position: absolute;
+        top: 100%;
+        z-index: 5;
+        display: none;
+        max-width: 100%; // Contain to parent when possible
+        padding: .5rem;
+        margin-top: .1rem;
+        font-size: .875rem;
+        line-height: 1;
+        color: #fff;
+        background-color: rgba($color, .8);
+        border-radius: .2rem;
+    }
+
+    .form-control, mat-select,
+    .custom-select  {
+        .was-validated &:#{$state},
+        &.is-#{$state}, &.ng-dirty.ng-#{$state} {
+            border-color: $color;
+
+            &:focus {
+                border-color: $color;
+                box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
+            }
+
+            ~ .#{$state}-feedback,
+            ~ .#{$state}-tooltip {
+                display: block;
+                font-family: $font-family-sans-serif;
+            }
+        }
+    }
+
+    .submit-attempted, .addition-attempted {
+        .form-control,
+        .mat-select,
+        .mat-checkbox,
+        .mat-radio-group{
+        .was-validated &:#{$state},
+        &.is-#{$state}, &.ng-#{$state} {
+            border-color: $color;
+
+            &:focus {
+                border-color: $color;
+                box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
+            }
+
+            ~ .#{$state}-feedback,
+            ~ .#{$state}-tooltip {
+                display: block;
+                font-family: $font-family-sans-serif;
+            }
+        }
+        }
+    }
+
+    /*.no-submit-indication{
+        .form-control,
+        .mat-select,
+        .mat-radio-group{
+            .was-validated &:#{$state},
+            &.is-#{$state}, &.ng-#{$state} {
+                border-color: $gray-400;
+
+                ~ .#{$state}-feedback,
+                ~ .#{$state}-tooltip {
+                    display: none;
+                }
+            }
+        }
+    }*/
+
+    .form-check-input{
+        .was-validated &:#{$state},
+        &.is-#{$state}, &.ng-#{$state}{
+            ~ .form-check-label {
+                color: $color;
+            }
+
+            ~ .#{$state}-feedback,
+            ~ .#{$state}-tooltip {
+                display: block;
+            }
+        }
+    }
+
+    .custom-control-input {
+        .was-validated &:#{$state},
+        &.is-#{$state}, &.ng-#{$state} {
+            ~ .custom-control-label {
+                color: $color;
+
+                &::before {
+                    background-color: lighten($color, 25%);
+                }
+            }
+
+            ~ .#{$state}-feedback,
+            ~ .#{$state}-tooltip {
+                display: block;
+            }
+
+            &:checked {
+                ~ .custom-control-label::before {
+                    @include gradient-bg(lighten($color, 10%));
+                }
+            }
+
+            &:focus {
+                ~ .custom-control-label::before {
+                    box-shadow: 0 0 0 1px $body-bg, 0 0 0 $input-focus-width rgba($color, .25);
+                }
+            }
+        }
+    }
+
+    // custom file
+    .custom-file-input {
+        .was-validated &:#{$state},
+        &.is-#{$state} {
+            ~ .custom-file-label {
+                border-color: $color;
+
+                &::before {
+                    border-color: inherit;
+                }
+            }
+
+            ~ .#{$state}-feedback,
+            ~ .#{$state}-tooltip {
+                display: block;
+            }
+
+            &:focus {
+                ~ .custom-file-label {
+                    box-shadow: 0 0 0 $input-focus-width rgba($color, .25);
+                }
+            }
+        }
+    }
+}
+

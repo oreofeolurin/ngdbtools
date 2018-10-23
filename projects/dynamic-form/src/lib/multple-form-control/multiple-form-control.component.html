@@ -1,0 +1,28 @@
+<div [ngClass]="{'addition-attempted': additionAttempted}">
+    <h5>{{control.label}}</h5>
+    <p class="description">{{control.description}}</p>
+
+
+    <div *ngFor="let form of formGroups; let i = index" class="d-flex flexed-form-group">
+        <div class="mt-2 row">
+            <ng-template ngFor let-subControl [ngForOf]="control['controls']">
+                <div class="col-{{subControl.column.normal}}">
+                    <db-form-control [group]="control.key" [control]="subControl" [form]="form"></db-form-control>
+
+                </div>
+                <!--Force next columns to break to new line-->
+                <div *ngIf="subControl.column.break" class="w-100"></div>
+            </ng-template>
+        </div>
+        <small *ngIf="!control.required || formGroups.length > 1" class="remove-group mt-2"
+               (click)="removeFormGroup(i)">
+            <mat-icon svgIcon="close"></mat-icon>
+        </small>
+
+    </div>
+
+    <small class="add-another" (click)="addFormGroup()">
+        <mat-icon svgIcon="plus"></mat-icon>
+        Add another
+    </small>
+</div>

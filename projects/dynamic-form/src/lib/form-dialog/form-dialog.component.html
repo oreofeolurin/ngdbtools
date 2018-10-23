@@ -1,0 +1,22 @@
+<main>
+    <article>
+
+        <header>
+            <h4>{{dialog.title}}</h4>
+            <p>{{dialog.message}}</p>
+        </header>
+
+        <section class="mt-3">
+            <db-dynamic-form (keyup.enter)="onSubmit()"></db-dynamic-form>
+        </section>
+
+        <footer class="mt-3">
+            <button class="btn" [ngClass]="setButtonClass(dialog.recedeAction)" (click)="call(dialog.recedeAction.resolve)">
+                {{dialog.recedeAction.text}}
+            </button>
+            <button class="btn" [ngClass]="setButtonClass(dialog.proceedAction)" (click)="onSubmit()">{{dialog.proceedAction.text}}</button>
+
+        </footer>
+    </article>
+
+</main>

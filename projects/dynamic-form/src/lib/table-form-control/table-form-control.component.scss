@@ -1,0 +1,25 @@
+@import "../../styles/abstracts";
+
+.table {
+    background: $gray-50;
+
+    tr th {
+        font-size: $font-size-sm;
+        font-weight: normal;
+        font-family: $font-family-sans-serif;
+        background: $gray-200;
+        //font-weight: bold;
+        &:hover {
+            //background: $gray-50;
+        }
+    }
+}
+
+.table tbody td {
+    border: none;
+    //padding: 0;
+}
+
+.table textarea {
+    width: 300px;
+}

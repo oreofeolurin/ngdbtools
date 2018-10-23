@@ -1,0 +1,11 @@
+*:focus{
+    outline: none !important;
+}
+
+b {
+    font-weight: 500 !important;
+}
+
+.cdk-overlay-container {
+    z-index: $zindex-modal;
+}

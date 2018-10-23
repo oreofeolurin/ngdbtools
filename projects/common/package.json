@@ -1,0 +1,10 @@
+{
+  "name": "@ngdbtools/common",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^6.1.7",
+    "@angular/core": "^6.1.7",
+    "@ngdbtools/core": "^0.0.1",
+    "gsap": "^2.0.2"
+  }
+}

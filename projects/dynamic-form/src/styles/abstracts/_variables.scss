@@ -1,0 +1,31 @@
+/// Reset Bootstrap variables
+
+// Color system
+$primary: #afd600;
+
+$gray-50: #fafafa;
+$gray-200: #e9ecef !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$black:    #000 !default;
+
+
+$green:   #28a745 !default;
+$red:     #dc3545 !default;
+
+
+// Fonts
+
+$font-family-serif:     "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", Times, Georgia, serif !default;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-base:  $font-family-sans-serif !default;
+
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-sm:                ($font-size-base * .875) !default;
+
+
+/// Import Bootstrap tools
+
+/*@import
+'~bootstrap/scss/functions',
+'~bootstrap/scss/variables';*/

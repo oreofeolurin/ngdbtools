@@ -1,0 +1,245 @@
+// # Forms
+
+form, .dynamic-form-control {
+    font-family: $font-family-base;
+
+    .btn {
+        padding: 5px 15px;
+        font-weight: bold;
+        font-size: $font-size-sm;
+        border-radius: 2px;
+    }
+}
+
+.form-group > input, textarea, .form-control {
+    font-family: $font-family-sans-serif;
+    border: 1px solid $gray-400;
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-size: $font-size-sm;
+}
+
+.form-group label.important:after {
+    content: "*";
+    color: $danger;
+    margin-left: 3px;
+    font-weight: bold;
+}
+
+.submit-attempted .form-group.has-errors .file-upload label.btn {
+    border: 1px solid $red;
+}
+
+.submit-attempted .form-group .file-upload label.btn {
+    border: 1px solid $primary;
+}
+
+a.link:not([href]) {
+    cursor: pointer;
+    font-weight: 600;
+    color: $primary;
+    &:hover {
+        text-decoration: underline !important;
+        color: darken($primary, 20%)
+    }
+}
+
+a.not-link {
+    color: $black;
+    &:hover {
+        text-decoration: none !important;
+    }
+}
+
+// Angular Material
+.mat-menu-panel {
+    max-width: 450px !important;
+    .mat-menu-item {
+        font-size: $font-size-sm * 0.9;
+        .description {
+            display: block;
+            margin-top: -7px;
+            color: $gray-500;
+        }
+        .mat-icon {
+            margin-right: 2px;
+            vertical-align: text-bottom;
+            transform: scale(0.9);
+
+        }
+
+    }
+}
+
+#progress-container {
+    position: fixed;
+    width: 100%;
+    z-index: $zindex-progressbar;
+    .mat-progress-bar {
+        height: 3px;
+    }
+}
+
+#error-container, #success-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: $zindex-tooltip;
+    display: flex;
+    justify-content: center;
+
+    .error-bar {
+        background: $red;
+    }
+
+    .success-bar {
+        background: $dark-green;
+    }
+
+    .error-bar, .success-bar {
+        width: 70%;
+        height: 100%;
+        padding: 7px;
+        text-align: center;
+        color: white;
+        font-family: $font-family-sans-serif;
+        font-size: $font-size-sm;
+        font-weight: bold;
+
+        .error-close {
+            cursor: pointer;
+        }
+
+    }
+}
+
+#error-list-container {
+    position: fixed;
+    top: 20%;
+    right: 0;
+    width: 350px;
+    height: auto;
+    z-index: $zindex-tooltip;
+    display: flex;
+    justify-content: center;
+
+    .error-bar {
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        padding: 10px;
+        background: opacify($red, 0.2);
+        color: white;
+        font-family: $font-family-sans-serif;
+        font-size: $font-size-sm;
+        font-weight: bold;
+        ul {
+            padding: 0;
+            list-style: none;
+            li {
+                padding: 10px;
+            }
+        }
+    }
+}
+
+.dot-bridge {
+    padding: 0 5px;
+    font-size: 20px;
+
+    &:before {
+        content: '\00B7';
+    }
+}
+
+button.btn {
+    font-family: $font-family-sans-serif;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.mat-select {
+    border: 1px solid $gray-400;
+    padding: 5px 10px;
+    font-size: $font-size-sm;
+    border-radius: 2px;
+
+    &:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+        box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+    }
+}
+
+.mat-select-disabled {
+    background: $gray-300;
+}
+
+.mat-radio-button {
+    font-size: $font-size-sm * 0.9;
+    font-family: $font-family-sans-serif;
+    margin-right: 10px;
+}
+
+.cdk-overlay-container {
+    .mat-select-panel:not([class*=mat-elevation-z]),
+    .mat-autocomplete-panel:not([class*=mat-elevation-z]) {
+        box-shadow: none;
+        border: 2px solid $gray-400;
+
+        .mat-option {
+            font-size: $font-size-sm;
+        }
+    }
+
+
+    .mat-menu-panel {
+       // box-shadow: none;
+      //  border: 1px solid $gray-400;
+
+        .mat-menu-content:not(:empty) {
+            padding-top: 8px;
+            padding-bottom: 8px;
+
+            .mat-menu-item {
+             //   line-height: 30px;
+           //     height: 30px;
+            }
+        }
+    }
+
+}
+
+//
+.tab-content {
+    background-color: $gray-50; // #EFF8EC;
+}
+
+// IE Message
+
+.ieMessageWarning {
+    background: $red;
+    padding: 10px;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    z-index: $zindex-progressbar;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    // Put your IE10+-specific CSS here
+    .ieMessageWarning {
+        display: block;
+    }
+}

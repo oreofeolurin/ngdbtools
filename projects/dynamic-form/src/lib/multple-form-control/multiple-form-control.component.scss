@@ -1,0 +1,42 @@
+@import "../../styles/abstracts";
+
+.description {
+    font-size: $font-size-sm;
+}
+
+.add-another {
+    cursor: pointer;
+    font-family: $font-family-sans-serif;
+    color: $gray-500;
+    font-weight: 700;
+    &:hover {
+        color: $black;
+        .mat-icon {
+            color: $green;
+        }
+
+    }
+    .mat-icon {
+        transform: scale(0.9);
+        vertical-align: bottom;
+    }
+}
+
+.remove-group {
+    cursor: pointer;
+    visibility: hidden;
+    color: $red;
+    padding: 55px 5px 0 5px;
+    @include flex-column(flex-start);
+    .mat-icon {
+        transform: scale(0.8);
+        margin-top: -20px;
+    }
+}
+
+.flexed-form-group:hover {
+    .mat-icon {
+        visibility: visible;
+    }
+}
+

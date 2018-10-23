@@ -1,0 +1,66 @@
+// Standard mixin of layout of sections
+
+
+.dc-section, .dc-header {
+
+    min-height: calc(100vh - 186px); //186 is footer height + container 10px padding
+    @include media-breakpoint-down(sm) {min-height: 100vh}
+
+    background-color: white;
+    padding: 50px 50px 100px 50px;
+
+    h3 {
+        margin: 0 auto;
+        font-family: $font-family-sarala;
+        font-weight: 700;
+        @include media-breakpoint-down(sm) {
+            font-size: $h2-font-size
+        }
+    }
+
+    p {
+        font-size: $font-size-base;
+        margin: 0 auto;
+        font-weight: 300;
+        font-family: $font-family-base;
+    }
+
+}
+
+.dc-header-normal, .dc-section-normal {
+    padding: 20px;
+}
+
+.dc-section, .dc-header, .dc-header-normal, .dc-section-normal {
+
+    @include media-breakpoint-down(sm) {
+        padding: 150px 20px 50px 20px;
+    }
+
+    font-family: $font-family-nunito;
+    text-shadow: darken($primary, 20%);
+
+    button {
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    button.btn-lg {
+       // border-radius: 20px;
+        padding: 10px 40px;
+        font-size: $font-size-base;
+        border: none;
+    }
+
+/*    button.btn {
+        mat-icon {
+            vertical-align: top;
+            @include mat-icon-size(20px)
+        }
+        font-size: $font-size-sm;
+        font-weight: 500;
+        border-radius: $btn-border-radius;
+        padding: $input-btn-padding-y $input-btn-padding-x;
+    }*/
+
+}

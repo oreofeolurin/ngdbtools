@@ -1,0 +1,26 @@
+
+
+button {
+    &.btn {
+        padding: 5px 15px;
+        font-weight: bold;
+        font-size: $font-size-sm;
+        border-radius: 2px;
+    }
+}
+
+button.btn.has-mat-icon, button.btn-sm.has-mat-icon {
+    mat-icon {
+        // vertical-align: top;
+        // @include mat-icon-size(20px);
+        transform: scale(0.75);
+    }
+
+    // border-radius: $btn-border-radius;
+    //padding: $input-btn-padding-y $input-btn-padding-x;
+
+    i {
+        margin-top: -5px;
+        display: inline-block;
+    }
+}

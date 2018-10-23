@@ -1,0 +1,30 @@
+@import "../../styles/abstracts";
+
+.form-group {
+    // width: 300px;
+    label {
+        font-size: $font-size-sm;
+        font-weight: bold;
+        &.mat-radio-label {
+            font-weight: normal;
+        }
+    }
+
+    .file-upload {
+        .form-control {
+            border-right: none;
+            height: 33px;
+        }
+
+        label.btn {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-left: -2px;
+            border: 1px solid $gray-400
+        }
+    }
+}
+
+.download-button .mat-icon {
+    transform: scale(0.8);
+}

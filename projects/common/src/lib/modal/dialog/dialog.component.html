@@ -1,0 +1,21 @@
+<main>
+
+    <header>
+        <h4>{{dialog.title}}</h4>
+    </header>
+
+    <section class="mt-3">
+        {{dialog.message}}
+    </section>
+
+    <footer class="mt-3">
+        <button *ngIf="dialog.recedeAction" class="btn" [ngClass]="setButtonClass(dialog.recedeAction)" (click)="call(dialog.recedeAction)">
+            {{dialog.recedeAction.text}}
+        </button>
+
+        <button *ngIf="dialog.proceedAction" class="btn" [ngClass]="setButtonClass(dialog.proceedAction)" (click)="call(dialog.proceedAction)">
+            {{dialog.proceedAction.text}}
+        </button>
+    </footer>
+
+</main>

@@ -1,0 +1,41 @@
+
+
+.mat-drawer-container {
+    @include media-breakpoint-down(sm) {
+        padding: 0
+    }
+    background-color: #fff;
+
+    .content-view {
+        height: 100%;
+    }
+
+    .mat-drawer {
+        overflow-y: visible;
+
+        &.expanded .minimized, &.minimized .expanded {
+            display: none;
+        }
+
+        &.expanded {
+            width: 200px;
+        }
+        &.minimized {
+            width: 60px;
+        }
+
+    }
+
+    .mat-drawer-content {
+
+        &.expanded {
+            margin-left: 200px !important;
+        }
+        &.minimized {
+            margin-left: 60px !important;
+        }
+    }
+
+}
+
+

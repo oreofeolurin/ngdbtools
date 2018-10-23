@@ -16,6 +16,26 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@ngdbtools/core": [
+        "dist/core"
+      ],
+      "@ngdbtools/core/*": [
+        "dist/core/*"
+      ],
+      "@ngdbtools/dynamic-form": [
+        "dist/dynamic-form"
+      ],
+      "@ngdbtools/dynamic-form/*": [
+        "dist/dynamic-form/*"
+      ],
+      "@ngdbtools/common": [
+        "dist/common"
+      ],
+      "@ngdbtools/common/*": [
+        "dist/common/*"
+      ]
+    }
   }
 }

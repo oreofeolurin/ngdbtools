@@ -1,0 +1,17 @@
+.loan-simulation .mat-slider {
+
+    .mat-slider-thumb {
+        background: $secondary;
+    }
+
+    .mat-slider-track-wrapper {
+        height: 5px;
+        .mat-slider-track-background {
+            height: 5px;
+        }
+        .mat-slider-track-fill {
+            height: 5px;
+            background: $primary;
+        }
+    }
+}

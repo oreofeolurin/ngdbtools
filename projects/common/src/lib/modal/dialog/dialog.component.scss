@@ -1,0 +1,25 @@
+// TODO Figure out how you would handle styling
+main {
+    background: white;
+    width: 500px;
+    padding: 25px 40px;
+    overflow: hidden;
+
+    /*header h4 {
+        font-weight: 700
+    }
+
+    section {
+        font-size: $font-size-sm;
+    }*/
+
+    footer {
+        display: flex;
+        justify-content: flex-end;
+
+        button:last-child {
+            margin-left: 15px;
+        }
+    }
+
+}

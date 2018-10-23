@@ -1,0 +1,18 @@
+
+table.table{
+
+    th{
+        font-family: $font-family-base;
+        font-size: $font-size-sm;
+        border-top: none;
+    }
+
+    tr{
+        cursor: pointer;
+    }
+
+    td{
+        font-family: $font-family-base;
+        font-size: $font-size-sm;
+    }
+}

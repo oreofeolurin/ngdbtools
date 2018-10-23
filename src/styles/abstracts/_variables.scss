@@ -1,0 +1,51 @@
+/// Reset Bootstrap variables
+
+// Color system
+/*$purple-200:  #8247b5 !default;
+$yellow-200:  #ffeb3b !default;
+$primary:       #0099fb !default; // #0057ff
+$secondary:     $yellow-200 !default;
+$link-color: #08c !default;*/
+
+
+$orange: #ed8600;
+$red: #f62a09;
+$green: #afd600;
+$dark-green: #28a745;
+$blue:  #009ea4;
+
+$secondary: $blue;
+$primary: #afd600;
+
+$gray-50: #fafafa;
+
+
+// Options
+
+// $enable-rounded: false !default;
+
+
+// Fonts
+
+$font-family-serif:     "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", Times, Georgia, serif !default;
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Open Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-museo: 'Museo Sans', $font-family-sans-serif !default;
+$font-family-base: $font-family-museo !default;
+
+
+// Tables
+//$table-hover-bg: $gray-50;
+
+
+// Buttons + Forms
+
+$input-btn-focus-width:       .1rem !default;
+
+$zindex-progressbar:   1100 !default;
+
+
+/// Import Bootstrap tools
+
+@import
+'~bootstrap/scss/functions',
+'~bootstrap/scss/variables';
