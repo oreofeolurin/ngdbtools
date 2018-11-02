@@ -57,7 +57,7 @@ export class RValidators {
     }
 
     public static getFormGroupErrors(form: FormGroup) {
-        const formErrors = form.errors;
+        const formErrors = form.errors || {};
 
         Object.keys(form.controls).forEach(key => {
             const errors = form.get(key).errors;

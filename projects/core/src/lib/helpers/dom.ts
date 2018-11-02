@@ -6,7 +6,9 @@ export class DOM {
     private readonly rootElement: any;
 
     constructor(private el: any) {
-        if (el instanceof ElementRef) {
+        if (typeof el === 'string') {
+            this.rootElement = document.createElement(el);
+        } else if (el instanceof ElementRef) {
             this.rootElement = this.el.nativeElement;
         } else {
             this.rootElement = el;
@@ -72,7 +74,6 @@ export class DOMElements {
             this.elements = item;
         }
 
-
     }
 
     public bind(spaceSeparatedEvents: string, func: any) {
@@ -92,16 +93,16 @@ export class DOMElements {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
-                DOMEvents.registerMultipleEvents(element, spaceSeparatedEvents, () => {
-                    func();
+                DOMEvents.registerMultipleEvents(element, spaceSeparatedEvents, (e) => {
+                    func(e);
                     DOMEvents.unregisterMultipleEvents(element, spaceSeparatedEvents);
                 });
             }
         }
 
         if (typeof this.element !== 'undefined') {
-            DOMEvents.registerMultipleEvents(this.element, spaceSeparatedEvents, () => {
-                func();
+            DOMEvents.registerMultipleEvents(this.element, spaceSeparatedEvents, (e) => {
+                func(e);
                 DOMEvents.unregisterMultipleEvents(this.element, spaceSeparatedEvents);
             });
         }
@@ -142,7 +143,7 @@ export class DOMElements {
 
     }
 
-    public prepend(html) {
+    public prependOld(html) {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
@@ -157,16 +158,61 @@ export class DOMElements {
 
     }
 
-    public append(html) {
+    public prepend(el: string | DOMElements | DOMElements[]) {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
-                element.innerHTML = element.innerHTML + html;
+                prependChild(element, el);
             }
         }
 
         if (typeof this.element !== 'undefined') {
-            this.element.innerHTML = this.element.innerHTML + html;
+            prependChild(this.element, el);
+        }
+
+        return this;
+
+        function prependChild(parent: HTMLElement | Element, child) {
+
+            if (Array.isArray(child)) {
+                for (const ch of child) {
+                    parent.insertBefore(ch.element, parent.childNodes[0]);
+                }
+            } else if (child instanceof DOMElements) {
+                parent.insertBefore(child.element, parent.childNodes[0]);
+            } else {
+                parent.innerHTML = parent.innerHTML + child;
+            }
+        }
+
+
+    }
+
+    public append(el: string | DOMElements | DOMElements[]) {
+
+        if (typeof this.elements !== 'undefined') {
+            for (const element of this.elements) {
+                appendChild(element, el);
+            }
+        }
+
+        if (typeof this.element !== 'undefined') {
+            appendChild(this.element, el);
+        }
+
+        return this;
+
+        function appendChild(parent, child) {
+
+            if (Array.isArray(child)) {
+                for (const ch of child) {
+                    parent.appendChild(ch.element);
+                }
+            } else if (child instanceof DOMElements) {
+                parent.appendChild(child.element);
+            } else {
+                parent.innerHTML = parent.innerHTML + child;
+            }
         }
 
 
@@ -245,16 +291,16 @@ export class DOMElements {
 
     }
 
-    public addClass(className): DOMElements {
+    public addClass(...classNames: string[]): DOMElements {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
-                element.classList.add(className);
+                element.classList.add(...classNames);
             }
         }
 
         if (typeof this.element !== 'undefined') {
-            this.element.classList.remove(className);
+            this.element.classList.add(...classNames);
         }
 
 
@@ -262,16 +308,16 @@ export class DOMElements {
 
     }
 
-    public removeClass(className) {
+    public removeClass(...className: string[]) {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
-                element.classList.remove(className);
+                element.classList.remove(...className);
             }
         }
 
         if (typeof this.element !== 'undefined') {
-            this.element.classList.remove(className);
+            this.element.classList.remove(...className);
         }
 
     }
@@ -282,6 +328,16 @@ export class DOMElements {
             return this.element.classList.contains(className);
         }
 
+    }
+
+    public scrollToEnd() {
+        if (typeof this.element !== 'undefined') {
+            this.element.scrollTop = this.element.scrollHeight;
+        }
+    }
+
+    public find(item: string | HTMLElement): DOMElements {
+        return new DOM(this.element).select(item);
     }
 
 

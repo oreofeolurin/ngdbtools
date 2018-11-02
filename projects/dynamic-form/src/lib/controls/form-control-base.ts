@@ -20,6 +20,7 @@ export interface FormControlBaseOptions<T> {
     validators?: string[];
     validate?: boolean;
     column?: FormControlColumn | number;
+    classes?: string[];
 }
 
 export class FormControlBase<T> {
@@ -39,6 +40,7 @@ export class FormControlBase<T> {
     validators: string[];
     validate = true;
     column: FormControlColumn = {normal: 6, break: false};
+    classes: string[];
 
     constructor(options: FormControlBaseOptions<T> = {}) {
         this.value = options.value;
@@ -57,5 +59,6 @@ export class FormControlBase<T> {
         this.validators = options.validators || [];
         this.validate = typeof options.validate === 'boolean' ? options.validate : this.validate;
         this.column = typeof options.column === 'number' ? {normal: options.column} : options.column || this.column;
+        this.classes = options.classes || [];
     }
 }

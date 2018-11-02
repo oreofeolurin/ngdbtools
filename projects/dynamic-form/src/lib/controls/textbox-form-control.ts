@@ -11,11 +11,13 @@ export class TextBoxFormControl extends FormControlBase<string> {
     autoComplete = 'on';
     type: string;
     min: string;
+    classes = ['form-control'];
 
     constructor(options: TextBoxFormControlOptions<string> = {}) {
         super(options);
         this.type = options['type'] || '';
         this.autoComplete = options['autoComplete'] || '';
         this.min = options['min'] || this.type === 'number' ? '0' : '';
+        this.classes = options.classes ? this.classes.concat(options.classes) : this.classes;
     }
 }

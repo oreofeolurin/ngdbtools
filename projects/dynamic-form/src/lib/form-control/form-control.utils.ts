@@ -77,11 +77,11 @@ export class FormControlUtils {
     private static createGroupFromControls(control: FormControlBase<any>, defaults: object) {
         const controls = {};
         control['controls'].forEach(subControl => {
-            const subValidators = control.validate ? this.getValidators(subControl) : [];
+            const subValidators = subControl.validate ? this.getValidators(subControl) : [];
             const subValue = subControl.value || defaults[subControl.key] || '';
             controls[subControl.key] = new FormControl({
                 value: subValue,
-                disabled: this.isControlDisabled(control, defaults)
+                disabled: this.isControlDisabled(subControl, defaults)
             }, subValidators);
         });
 

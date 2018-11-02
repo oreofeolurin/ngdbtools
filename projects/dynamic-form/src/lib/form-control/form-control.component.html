@@ -10,7 +10,7 @@
 
 
     <div [ngSwitch]="control.controlType">
-        <input *ngSwitchCase="'textbox'" [formControlName]="control.key" class="form-control"
+        <input *ngSwitchCase="'textbox'" [formControlName]="control.key" [ngClass]="control.classes"
                [placeholder]="control['placeholder']"
                [id]="control.key" [type]="control['type']" [min]="control['min']"
                [autocomplete]="control['autoComplete']">
