@@ -339,6 +339,10 @@ export class DOMElements {
     public find(item: string | HTMLElement): DOMElements {
         return new DOM(this.element).select(item);
     }
+    
+    public findOne(item: string | HTMLElement): DOMElements {
+        return new DOM(this.element).selectOne(item);
+    }
 
 
 }

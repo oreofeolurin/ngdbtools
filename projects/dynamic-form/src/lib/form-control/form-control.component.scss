@@ -23,6 +23,15 @@
             border: 1px solid $gray-400
         }
     }
+
+    //CSS Trick to remove spinners from input - https://css-tricks.com/snippets/css/turn-off-number-input-spinners/
+    input.no-number-spinner[type=number]::-webkit-inner-spin-button,
+    input.no-number-spinner[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+
 }
 
 .download-button .mat-icon {
