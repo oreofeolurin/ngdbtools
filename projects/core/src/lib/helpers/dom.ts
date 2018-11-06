@@ -282,11 +282,14 @@ export class DOMElements {
 
     }
 
-    public attr(name, value) {
+    public attr<T = DOMElements>(name: string, value?: string): T {
 
         if (typeof this.element !== 'undefined') {
+            if (typeof value === 'undefined') {
+                return this.element.getAttribute(name) as any;
+            }
             this.element.setAttribute(name, value);
-            return this;
+            return this as any;
         }
 
     }
@@ -339,7 +342,7 @@ export class DOMElements {
     public find(item: string | HTMLElement): DOMElements {
         return new DOM(this.element).select(item);
     }
-    
+
     public findOne(item: string | HTMLElement): DOMElements {
         return new DOM(this.element).selectOne(item);
     }
