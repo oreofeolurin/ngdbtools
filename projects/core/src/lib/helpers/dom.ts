@@ -374,9 +374,10 @@ export class DOMEvents {
     public static registerMultipleEvents(el, spaceSeparatedEvents, func, unique = false) {
         const events = spaceSeparatedEvents.split(' ');
         events.forEach((eventName) => {
-            if (unique && !DOMEvents.hasEvent(el, eventName, func)) {
-                DOMEvents.registerEvent(el, eventName, func);
+            if (unique && DOMEvents.hasEvent(el, eventName, func)) {
+                return;
             }
+            return DOMEvents.registerEvent(el, eventName, func);
         });
     }
 
