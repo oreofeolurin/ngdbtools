@@ -76,6 +76,19 @@ export class DOMElements {
 
     }
 
+    public on(spaceSeparatedEvents: string, func: any) {
+
+        if (typeof this.elements !== 'undefined') {
+            for (const element of this.elements) {
+                DOMEvents.registerMultipleEvents(element, spaceSeparatedEvents, func, true);
+            }
+        }
+
+        if (typeof this.element !== 'undefined') {
+            DOMEvents.registerMultipleEvents(this.element, spaceSeparatedEvents, func, true);
+        }
+    }
+
     public bind(spaceSeparatedEvents: string, func: any) {
 
         if (typeof this.elements !== 'undefined') {
@@ -106,6 +119,10 @@ export class DOMElements {
                 DOMEvents.unregisterMultipleEvents(this.element, spaceSeparatedEvents);
             });
         }
+    }
+
+    public off(spaceSeparatedEvents: string) {
+        this.unbind(spaceSeparatedEvents);
     }
 
     public unbind(spaceSeparatedEvents: string) {
@@ -354,10 +371,12 @@ export class DOMElements {
 // https://stackoverflow.com/a/2837906/3335054
 export class DOMEvents {
 
-    public static registerMultipleEvents(el, spaceSeparatedEvents, func) {
+    public static registerMultipleEvents(el, spaceSeparatedEvents, func, unique = false) {
         const events = spaceSeparatedEvents.split(' ');
         events.forEach((eventName) => {
-            DOMEvents.registerEvent(el, eventName, func);
+            if (unique && !DOMEvents.hasEvent(el, eventName, func)) {
+                DOMEvents.registerEvent(el, eventName, func);
+            }
         });
     }
 
