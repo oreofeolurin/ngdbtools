@@ -160,7 +160,7 @@ export class DOMElements {
 
     }
 
-    public prependOld(html) {
+    public prependHTML(html) {
 
         if (typeof this.elements !== 'undefined') {
             for (const element of this.elements) {
@@ -171,8 +171,6 @@ export class DOMElements {
         if (typeof this.element !== 'undefined') {
             this.element.innerHTML = html + this.element.innerHTML;
         }
-
-
     }
 
     public prepend(el: string | DOMElements | DOMElements[]) {
@@ -203,6 +201,19 @@ export class DOMElements {
         }
 
 
+    }
+
+    public appendHTML(html) {
+
+        if (typeof this.elements !== 'undefined') {
+            for (const element of this.elements) {
+                element.innerHTML = element.innerHTML  + html;
+            }
+        }
+
+        if (typeof this.element !== 'undefined') {
+            this.element.innerHTML = this.element.innerHTML + html;
+        }
     }
 
     public append(el: string | DOMElements | DOMElements[]) {
