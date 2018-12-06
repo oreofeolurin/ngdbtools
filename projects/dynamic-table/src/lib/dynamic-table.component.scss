@@ -1,0 +1,51 @@
+/// DBTools Variables
+
+// Color system
+$gray-50: #fafafa;
+$gray-200: #e9ecef !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-700: #495057 !default;
+
+
+// Fonts
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+
+
+
+.mat-row {
+    cursor: pointer;
+
+    .mat-icon {
+        color: $gray-500;
+    }
+    &:hover {
+        background: $gray-50;
+
+        .mat-icon {
+            color: $gray-700;
+        }
+    }
+
+    .mat-cell {
+        font-size: $font-size-base * 0.7;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+}
+
+.mat-header-cell {
+    font-weight: normal;
+}
+
+.filter {
+    border-bottom: 1px solid $gray-200;
+    padding-bottom: 10px;
+    input, .mat-select {
+        border-radius: 0;
+        height: 32px;
+        &, &:focus {
+           border-color: $gray-400;
+        }
+    }
+}

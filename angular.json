@@ -241,6 +241,46 @@
           }
         }
       }
+    },
+    "dynamic-table": {
+      "root": "projects/dynamic-table",
+      "sourceRoot": "projects/dynamic-table/src",
+      "projectType": "library",
+      "prefix": "db",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/dynamic-table/tsconfig.lib.json",
+            "project": "projects/dynamic-table/ng-package.json"
+          },
+          "configurations": {
+              "production": {
+                  "project": "projects/dynamic-table/ng-package.prod.json"
+              }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/dynamic-table/src/test.ts",
+            "tsConfig": "projects/dynamic-table/tsconfig.spec.json",
+            "karmaConfig": "projects/dynamic-table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/dynamic-table/tsconfig.lib.json",
+              "projects/dynamic-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "dbtools"

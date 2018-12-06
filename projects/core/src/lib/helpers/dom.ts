@@ -351,6 +351,8 @@ export class DOMElements {
             this.element.classList.remove(...className);
         }
 
+        return this;
+
     }
 
     public hasClass(className) {

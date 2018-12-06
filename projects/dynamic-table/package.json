@@ -1,0 +1,11 @@
+{
+    "name": "@ngdbtools/dynamic-table",
+    "version": "0.0.1",
+    "peerDependencies": {
+        "@angular/common": "^6.1.7",
+        "@angular/core": "^6.1.7",
+        "@ngdbtools/core": "^0.2.10",
+        "@ngdbtools/common": "^0.0.1",
+        "@ngdbtools/dynamic-form": "^0.2.4"
+    }
+}

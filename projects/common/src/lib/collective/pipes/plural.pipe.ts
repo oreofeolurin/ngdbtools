@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {words} from 'lodash';
 
 @Pipe({
   name: 'plural'

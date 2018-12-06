@@ -1,0 +1,111 @@
+<main>
+
+    <section class="filter" *ngIf="filterForm">
+
+        <form [formGroup]="filterForm" class="row justify-content-end">
+
+            <ng-template ngFor let-control [ngForOf]="filterControls">
+                <div [ngSwitch]="control.controlType" class="col-{{control.column.normal}}">
+                    <input *ngSwitchCase="'textbox'" [formControlName]="control.key" class="form-control"
+                           [placeholder]="control['placeholder']"
+                           [id]="control.key" [type]="control['type']" [min]="control['min']"
+                           [autocomplete]="control['autoComplete']">
+
+                    <mat-select *ngSwitchCase="'dropdown'"
+                                [id]="control.key" [placeholder]="control['placeholder']"
+                                [formControlName]="control.key">
+                        <mat-option *ngFor="let opt of control['options']" [value]="opt.key">
+                            {{opt.value}}
+                            <small>{{opt.description}}</small>
+                        </mat-option>
+                    </mat-select>
+
+                </div>
+            </ng-template>
+
+          <!--  <div class="col-2 float-right">
+                <button class="btn btn-secondary has-mat-icon"><mat-icon svgIcon="filter"></mat-icon> Filter Results</button>
+            </div>-->
+        </form>
+    </section>
+
+    <section *ngIf="isLoading" class="text-center mt-5">
+        <span class="spinner secondary mr-3"></span>
+        <small>Fetching results</small>
+    </section>
+
+    <section *ngIf="initialized && !isLoading && !dataMeta?.totalCount" class="text-center mt-5">
+        <h5>No results matched your filter criteria</h5>
+        <small>Try a different filter criteria to search results most relevant to you.</small>
+    </section>
+
+
+    <section [hidden]="isLoading || !dataMeta?.totalCount">
+        <mat-table class="table" [dataSource]="dataSource"
+                   matSort [matSortActive]="options?.columns.sortActive"
+                   [matSortDirection]="options?.columns.sortDirection" matSortDisableClear>
+
+            <ng-container *ngFor="let col of options?.columns.cols" [matColumnDef]="col.key">
+
+                <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'col-' + col.width">{{col.name}}
+                </mat-header-cell>
+
+                <mat-cell *matCellDef="let data" [ngClass]="'col-' + col.width">
+                    <span *ngIf="col.type === 'date'">{{data[col.key] | date}}</span>
+                    <span *ngIf="!col.type">{{data[col.key]}}</span>
+                </mat-cell>
+
+            </ng-container>
+
+
+            <ng-container matColumnDef="rowOptions">
+                <mat-header-cell *matHeaderCellDef class="col-1"></mat-header-cell>
+                <mat-cell *matCellDef="let data" class="col-1" [matMenuTriggerFor]="appMenu"
+                          [matMenuTriggerData]="{data: data}">
+                    <mat-icon svgIcon="dots-horizontal"></mat-icon>
+                </mat-cell>
+            </ng-container>
+
+            <!--<ng-container matColumnDef="description">-->
+
+            <!--<mat-header-cell *matHeaderCellDef>Description</mat-header-cell>-->
+
+            <!--<mat-cell class="description-cell"-->
+            <!--*matCellDef="let lesson">{{lesson.description}}-->
+            <!--</mat-cell>-->
+
+            <!--</ng-container>-->
+
+            <!--<ng-container matColumnDef="duration">-->
+
+            <!--<mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>-->
+
+            <!--<mat-cell class="duration-cell"-->
+            <!--*matCellDef="let lesson">{{lesson.duration}}-->
+            <!--</mat-cell>-->
+
+            <!--</ng-container>-->
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onRowClick(row)"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator [length]="dataMeta?.totalCount" [pageSize]="10"
+                       [pageSizeOptions]="[3, 5, 10, 20]"></mat-paginator>
+
+    </section>
+
+
+    <mat-menu #appMenu="matMenu">
+        <ng-template matMenuContent let-data="data">
+            <button *ngFor="let option of options.rowOptions" mat-menu-item
+                    (click)="onRowOptionClick(option.key, data)">{{option.name}}
+            </button>
+        </ng-template>
+    </mat-menu>
+
+</main>
+

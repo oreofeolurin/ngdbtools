@@ -35,6 +35,12 @@
       ],
       "@ngdbtools/common/*": [
         "dist/common/*"
+      ],
+      "dynamic-table": [
+        "dist/dynamic-table"
+      ],
+      "dynamic-table/*": [
+        "dist/dynamic-table/*"
       ]
     }
   }
