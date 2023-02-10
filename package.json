@@ -1,12 +1,22 @@
 {
-  "name": "ngdbtools",
-  "version": "0.0.0",
+  "name": "dbtools",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:core": "ng build core --configuration production",
+    "build:common": "ng build common --configuration production",
+    "build:dynamic-form": "ng build dynamic-form --configuration production",
+    "build:dynamic-table": "ng build dynamic-table --configuration production",
+    "package:core": "npm run build:core && cd dist/core && npm pack",
+    "package:common": "npm run build:common && cd dist/common && npm pack",
+    "package:dynamic-form": "npm run build:dynamic-form && cd dist/dynamic-form && npm pack",
+    "package:dynamic-table": "npm run build:dynamic-table && cd dist/dynamic-table && npm pack",
+    "package": "npm run package:core && npm run package:common"
+
   },
   "private": true,
   "dependencies": {
