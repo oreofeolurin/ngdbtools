@@ -1,4 +1,3 @@
-@import "../../../../../src/styles/abstracts";
 
 .db-modal-view {
     position: fixed;
@@ -6,18 +5,19 @@
     width: 100%;
     height: 100vh;
     display: none;
-    z-index: $zindex-modal-backdrop;
+    z-index: 5000;
+
+}
 
 
-    .db-modal-content-layer {
-        width: inherit;
-        cursor: pointer;
-        @include flex-column();
-
-        .db-modal-content-view {
-            cursor: auto;
-            margin: 0 auto;
-        }
+.db-modal-view .db-modal-content-layer {
+    width: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .db-modal-content-view {
+        cursor: auto;
+        margin: 0 auto;
     }
-
 }

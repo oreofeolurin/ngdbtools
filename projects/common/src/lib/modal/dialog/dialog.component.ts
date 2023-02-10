@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {ModalRef} from '../models';
-import {Dialog, DialogAction} from './dialog';
+import { Component } from '@angular/core';
+import { ModalData, ModalRef } from '../models';
+import { Dialog, DialogAction } from './dialog';
 
 @Component({
     selector: 'db-alert-dialog',
@@ -11,7 +11,13 @@ export class DialogComponent {
     public dialog: Dialog;
 
     constructor(private modalRef: ModalRef) {
-        this.dialog = modalRef.modal.data.get(Dialog.DIALOG_DATA_KEY);
+        const modalData = this.modalRef.modal.data ?? {};
+        
+        if (modalData instanceof ModalData || modalData instanceof Map) {
+            this.dialog = modalData.get(Dialog.DIALOG_DATA_KEY);
+        } else {
+            this.dialog = modalData[Dialog.DIALOG_DATA_KEY];
+        }
     }
 
 

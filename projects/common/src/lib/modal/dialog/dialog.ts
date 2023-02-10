@@ -2,6 +2,8 @@
  * Created by EdgeTech on 8/31/2016.
  */
 
+import { ModalData } from "../models";
+
 
 export class DialogAction {
     public static NEUTRAL = 'ACTION_NEUTRAL';
@@ -14,6 +16,7 @@ export class DialogAction {
     public text: string;
     public type: string;
     public resolve: boolean;
+    public disabled = false;
 
     constructor(text: string, type: string, resolve: boolean) {
         this.text = text;
@@ -30,6 +33,11 @@ export class DialogAction {
         this.type = type;
         return this;
     }
+
+    public disable(): DialogAction {
+        this.disabled = true;
+        return this;
+    }
 }
 
 export class Dialog {
@@ -37,7 +45,7 @@ export class Dialog {
     public static DIALOG_DATA_KEY = 'db-dialog';
 
     public title: string;
-    public message: string;
+    public message?: string;
 
     public recedeAction: DialogAction = DialogAction.RECEDE;
     public proceedAction: DialogAction = DialogAction.PROCEED;
@@ -63,4 +71,8 @@ export class Dialog {
         this.proceedAction = action;
         return this;
     }
+}
+
+export function DialogData(dialog: Dialog) {
+    return new ModalData(Dialog.DIALOG_DATA_KEY, dialog);
 }

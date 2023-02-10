@@ -1,4 +1,4 @@
-@import "../../styles/abstracts";
+
 
 main {
     background: white;
@@ -20,7 +20,7 @@ main {
             font-weight: 700
         }
         p {
-            font-size: $font-size-sm;
+            font-size: 12px; //$font-size-sm;
         }
 
     }

@@ -1,18 +1,17 @@
-@import "../../styles/abstracts";
 
 .description {
-    font-size: $font-size-sm;
+    font-size: 12px;//$font-size-sm;
 }
 
 .add-another {
     cursor: pointer;
-    font-family: $font-family-sans-serif;
-    color: $gray-500;
+    //font-family: $font-family-sans-serif;
+    color: #ccc;
     font-weight: 700;
     &:hover {
-        color: $black;
+        color: #000;
         .mat-icon {
-            color: $green;
+            color: green;
         }
 
     }
@@ -25,9 +24,12 @@
 .remove-group {
     cursor: pointer;
     visibility: hidden;
-    color: $red;
+    color: red;
     padding: 55px 5px 0 5px;
-    @include flex-column(flex-start);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    //@include flex-column(flex-start);
     .mat-icon {
         transform: scale(0.8);
         margin-top: -20px;

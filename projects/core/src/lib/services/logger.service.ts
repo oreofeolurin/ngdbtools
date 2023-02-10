@@ -5,12 +5,14 @@ export enum LogLevel {
     ERROR
 }
 
-export function LoggerFactory(isProd: boolean) {
-    return new Logger( isProd ? LogLevel.NONE : LogLevel.ERROR);
+export function LoggerFactory(isProd = true) {
+    return () => {
+        return new Logger(isProd ? LogLevel.NONE : LogLevel.ERROR);
+    }
 }
 
 export class Logger {
-    constructor(private readonly logLevel: LogLevel = LogLevel.ERROR) {}
+    constructor(private readonly logLevel: LogLevel = LogLevel.ERROR) { }
 
     log(message: string): void {
         if (this.logLevel > LogLevel.INFO) { console.log(message); }

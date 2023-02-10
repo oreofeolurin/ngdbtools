@@ -1,3 +1,3 @@
 export interface IModalEntryComponent {
-    closeModal(resolve): void;
+    closeModal(resolve: any): void;
 }

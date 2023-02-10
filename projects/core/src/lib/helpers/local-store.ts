@@ -1,7 +1,9 @@
 const STORAGE = (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') ? window.localStorage : null;
 
-export function LocalStoreFactory(localStorageName: string) {
-    return new LocalStore(localStorageName || 'app-store');
+export function LocalStoreFactory(localStorageName = 'app-store') {
+    return () => {
+        return new LocalStore(localStorageName);
+    }
 }
 
 export class LocalStore {
@@ -9,7 +11,7 @@ export class LocalStore {
     constructor(private localStorageName: string) {
     }
 
-    setLocalStorageName(name) {
+    setLocalStorageName(name: string) {
         this.localStorageName = name;
     }
 
@@ -51,7 +53,7 @@ export class LocalStore {
             store = JSON.parse(rawStore);
 
             // lets remove the data
-            store[key] = store[key].filter((value) => value !== data);
+            store[key] = store[key].filter((value: any) => value !== data);
 
 
             const string = JSON.stringify(store);
