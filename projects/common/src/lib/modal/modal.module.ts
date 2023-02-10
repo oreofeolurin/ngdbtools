@@ -1,29 +1,24 @@
-import {ANALYZE_FOR_ENTRY_COMPONENTS, InjectionToken, NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {ModalComponent} from './modal.component';
 import {ModalService} from './modal.service';
 import {DialogComponent} from './dialog/dialog.component';
 import {CommonModule} from '@angular/common';
-import {MODAL_ANIMATION_METADATA, ModalAnimationMetadata} from './modal-animation-metadata';
+import {ANIMATION_METADATA_TOKEN, DEFAULT_MODAL_ANIMATION_METADATA} from './modal-animation-metadata';
+import { ModalDirective } from './modal.directive';
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [ModalComponent, DialogComponent],
+    declarations: [ModalComponent, DialogComponent, ModalDirective],
     providers: [ModalService],
     exports: [ModalComponent, DialogComponent],
-    entryComponents: [DialogComponent]
 })
 export class ModalModule {
-
-    static withComponents(components: any[], animation?: ModalAnimationMetadata) {
+    static forRoot(animationMetadata = DEFAULT_MODAL_ANIMATION_METADATA): ModuleWithProviders<ModalModule> {
         return {
             ngModule: ModalModule,
             providers: [
-                {
-                    provide: ANALYZE_FOR_ENTRY_COMPONENTS,
-                    useValue: components,
-                    multi: true
-                },
-                {provide: MODAL_ANIMATION_METADATA, useValue: animation}]
+                {provide: ANIMATION_METADATA_TOKEN, useValue: animationMetadata},
+            ]
         };
-    }
+    }   
 }

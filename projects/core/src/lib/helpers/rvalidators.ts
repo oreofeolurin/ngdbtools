@@ -1,12 +1,12 @@
 import {AbstractControl, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
-import {Validator} from 'class-validator';
+import {isAlpha, isAlphanumeric, isBoolean, isEmail, isNumberString, length, matches, Validator} from 'class-validator';
 
 const validator = new Validator();
 
 export class RValidators {
 
     public static truthy(c: FormControl) {
-        return validator.isBoolean(c.value) && c.value === true ? null : {truthy: {valid: false}};
+        return isBoolean(c.value) && c.value === true ? null : {truthy: {valid: false}};
     }
 
     /**
@@ -18,16 +18,16 @@ export class RValidators {
     }
 
     public static email(c: FormControl) {
-        return validator.isEmail(c.value) ? null : {email: {valid: false}};
+        return isEmail(c.value) ? null : {email: {valid: false}};
     }
 
     public static alpha(c: FormControl) {
-        return validator.isAlpha(c.value) ? null : {name: {valid: false}};
+        return isAlpha(c.value) ? null : {name: {valid: false}};
     }
 
     public static username(c: FormControl) {
-        return validator.matches(c.value, /^(?![0-9])\w{3,}/)
-        && validator.isAlphanumeric(c.value) ? null : {username: {valid: false}};
+        return matches(c.value, /^(?![0-9])\w{3,}/)
+        && isAlphanumeric(c.value) ? null : {username: {valid: false}};
     }
 
     public static words(length: number) {
@@ -38,8 +38,8 @@ export class RValidators {
         return wordFunc;
     }
 
-    public static phone(c: FormControl): ValidationErrors {
-        return c.value.length === 0 || (validator.length(c.value, 11, 11) && validator.isNumberString(c.value))
+    public static phone(c: FormControl): ValidationErrors | null {
+        return c.value.length === 0 || (length(c.value, 11, 11) && isNumberString(c.value))
             ? null
             : {phone: {valid: false}};
     }
@@ -52,7 +52,7 @@ export class RValidators {
         return lengthFunc;
     }
 
-    public static keyValue(c: FormControl): ValidationErrors {
+    public static keyValue(c: FormControl): ValidationErrors  | null {
         return c.value.key && c.value.value ? null : {keyValue: {valid: false}};
     }
 
@@ -60,9 +60,9 @@ export class RValidators {
         const formErrors = form.errors || {};
 
         Object.keys(form.controls).forEach(key => {
-            const errors = form.get(key).errors;
+            const errors = form.get(key)?.errors;
             if (errors !== null) {
-                formErrors[key] = Object.keys(form.get(key).errors);
+                formErrors[key] = Object.keys(form.get(key)?.errors ?? {});
             }
         });
 
@@ -72,9 +72,9 @@ export class RValidators {
 
     public static matchControl(firstFormControlName: string, secondFormControlName: string) {
 
-        const matchControlFn = function (ac: AbstractControl) {
-            const firstValue = ac.get(firstFormControlName).value;
-            const secondValue = ac.get(secondFormControlName).value;
+        const matchControlFn = (ac: AbstractControl) => {
+            const firstValue = ac.get(firstFormControlName)?.value;
+            const secondValue = ac.get(secondFormControlName)?.value;
 
             if (firstValue === secondValue) {
                 return null;
@@ -82,7 +82,8 @@ export class RValidators {
 
 
             // ac.setErrors({[secondFormControlName]: { matchControl:  false} });
-            ac.get(secondFormControlName).setErrors({matchControl: false});
+            ac.get(secondFormControlName)?.setErrors({matchControl: false});
+            return
         };
 
         return matchControlFn;

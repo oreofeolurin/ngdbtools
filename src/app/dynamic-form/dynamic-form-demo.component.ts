@@ -1,7 +1,7 @@
-import {Component, Inject, Injector, OnInit, ViewChild} from '@angular/core';
-import {DynamicFormComponent, DropdownFormControl, TextBoxFormControl} from '@ngdbtools/dynamic-form';
-import {ModalRef} from '@ngdbtools/common';
-import {RValidators} from '../../../projects/core/src/lib/helpers';
+import {Component, Inject, Injector, Input, OnInit, ViewChild} from '@angular/core';
+//import {DynamicFormComponent, DropdownFormControl, TextBoxFormControl} from '@ngdbtools/dynamic-form';
+import { ModalRef} from '@ngdbtools/common';
+//import {RValidators} from '../../../projects/core/src/lib/helpers';
 
 
 @Component({
@@ -9,17 +9,20 @@ import {RValidators} from '../../../projects/core/src/lib/helpers';
     templateUrl: './dynamic-form-demo.component.html',
 })
 export class DynamicFormDemoComponent implements OnInit {
-    @ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
+    @Input() data!: Record<string, any>;
+    //@ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
 
-    constructor() {}
+    constructor(private modalRef: ModalRef) {}
 
     ngOnInit() {
+        console.log(this.modalRef.getData('hello'));
+        console.log(this.data);
         const sampleData = {creditCardTypeId: 1};
-        this.dynamicForm.update(sampleData, this.getFormControls(), [RValidators.matchControl('catName', 'verify')]);
+      //  this.dynamicForm.update(sampleData, this.getFormControls(), [RValidators.matchControl('catName', 'verify')]);
     }
 
     public getFormControls() {
-        return [
+       /* return [
             new TextBoxFormControl({
                 key: 'catName',
                 label: 'Cat Name',
@@ -59,17 +62,19 @@ export class DynamicFormDemoComponent implements OnInit {
                 helpText: 'Note that the color of the cat cannot change'
             }),
         ];
+        */
     }
 
-    onValueChanges(data) {
+    onValueChanges(data: any) {
         console.log(data);
     }
 
-    onSubmit(payload = this.dynamicForm.getPayload()) {
-        console.log(payload);
+    //onSubmit(payload = this.dynamicForm.getPayload()) {
+    onSubmit() {
+        this.modalRef.close("form submitted");
     }
 
     close() {
-        // this.modalRef.close(null);
+        this.modalRef.close("modal closed");
     }
 }

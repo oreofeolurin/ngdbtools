@@ -1,13 +1,13 @@
-@import "../../styles/abstracts";
+
 
 .table {
-    background: $gray-50;
+    background: #ccc;
 
     tr th {
-        font-size: $font-size-sm;
+        font-size: 12px;
         font-weight: normal;
-        font-family: $font-family-sans-serif;
-        background: $gray-200;
+        //font-family: $font-family-sans-serif;
+        background: #ccc;
         //font-weight: bold;
         &:hover {
             //background: $gray-50;

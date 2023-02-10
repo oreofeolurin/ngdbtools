@@ -1,7 +1,9 @@
-import {Type} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {Utils} from '@ngdbtools/core';
-import {DEFAULT_MODAL_ANIMATION_METADATA, ModalAnimationMetadata} from './modal-animation-metadata';
+import { Type } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { Utils } from '@ngdbtools/core';
+import { DEFAULT_MODAL_ANIMATION_METADATA, ModalAnimationMetadata } from './modal-animation-metadata';
+import { DialogComponent } from './dialog/dialog.component';
+import { Dialog, DialogData } from './dialog/dialog';
 
 export interface ModalExistRef {
     tag: string;
@@ -11,8 +13,8 @@ export interface ModalExistRef {
 
 
 export interface ModalOptions {
-    component: Type<any>;
-    data: ModalData;
+    component?: Type<any>;
+    data?: Map<any, any> | Record<any, any> | ModalData;
     closeOnOuterClick?: boolean;
     animation?: ModalAnimationMetadata;
 }
@@ -35,16 +37,22 @@ export class ModalRef {
         if (typeof forceClose === 'undefined') {
             forceClose = false;
         }
-        this.exitSubject.next({tag: this.modal.tag, resolve: resolve, forceClose: forceClose});
+        this.exitSubject.next({ tag: this.modal.tag, resolve: resolve, forceClose: forceClose });
     }
 
-    public getData<T = any>(key): T {
-        return this.modal.data.get(key);
+    public getData<T = any>(key: string): T {
+        const modalData = this.modal.data ?? {};
+
+        if (modalData instanceof ModalData || modalData instanceof Map) {
+            return modalData.get(key);
+        }
+
+        return modalData[key];
     }
 }
 
 export class ModalData<T = any> {
-    private map = new Map<string, T>();
+    public map = new Map<string, T>();
 
 
     constructor(key: string, value: T) {
@@ -55,7 +63,7 @@ export class ModalData<T = any> {
         this.map.set(key, value);
     }
 
-    get(key: string): T {
+    get(key: string): T | undefined {
         return this.map.get(key);
     }
 }
@@ -64,14 +72,17 @@ export class Modal {
     public readonly tag: string;
     public readonly isDefaultAnimation: boolean;
     public readonly component: Type<any>;
-    public readonly data: ModalData;
+    // public readonly data: ModalData | undefined;
+    public readonly data: Map<any, any> | Record<any, any> | ModalData | undefined;
+
     public readonly closeOnOuterClick: boolean;
     public animation: ModalAnimationMetadata;
 
     constructor(component: Type<any>,
-                data?: ModalData,
-                closeOnOuterClick: boolean = true,
-                animation?: ModalAnimationMetadata) {
+        data?: Map<any, any> | object | ModalData,
+        // data?: ModalData,
+        closeOnOuterClick: boolean = true,
+        animation?: ModalAnimationMetadata) {
 
         this.tag = Utils.generateRandomID(10).toUpperCase();
         this.component = component;
@@ -84,7 +95,20 @@ export class Modal {
     }
 
     static create(options: ModalOptions) {
+        if(!options.component)  {
+            throw new TypeError('Modal component is not defined');
+        }
         return new Modal(options.component, options.data, options.closeOnOuterClick, options.animation);
+    }
+
+    static createDialog(dialog: Dialog, options?: ModalOptions) {
+        console.log('createDialog', options?.animation?.start);
+        if(options?.animation && !options.animation.start) {
+            console.log('Modal animation start is not defined', options.animation.start);
+            options.animation.start = DEFAULT_MODAL_ANIMATION_METADATA.start;
+            console.log('Modal animation start is set to default', options.animation.start);
+        }
+        return new Modal(DialogComponent, DialogData(dialog), options?.closeOnOuterClick, options?.animation);
     }
 
 }

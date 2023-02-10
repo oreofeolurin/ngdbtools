@@ -10,11 +10,11 @@ export interface UIStateNotification {
 }
 
 export interface UIActionsInterface {
-    load();
+    load(): any;
 
-    loadDone();
+    loadDone(): any;
 
-    loadNotification(notification: UIStateNotification);
+    loadNotification(notification: UIStateNotification): any;
 
-    removeNotification();
+    removeNotification(): any;
 }

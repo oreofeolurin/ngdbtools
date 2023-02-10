@@ -1,20 +1,20 @@
-import {Inject, Injectable} from '@angular/core';
-import {Modal, ModalExistRef, ModalRef} from './models';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {MODAL_ANIMATION_METADATA, ModalAnimationMetadata} from './modal-animation-metadata';
+import { Inject, Injectable } from '@angular/core';
+import { Modal, ModalExistRef, ModalRef } from './models';
+import { BehaviorSubject, filter, Observable, Subject } from 'rxjs';
+import { ANIMATION_METADATA_TOKEN, ModalAnimationMetadata } from './modal-animation-metadata';
 
 @Injectable()
 export class ModalService {
 
     // Observable string sources
     private modalExitSubject = new Subject<ModalExistRef>();
-    private newModalSubject = new BehaviorSubject<ModalRef>(null);
+    private newModalSubject = new BehaviorSubject<ModalRef>(null as any);
 
     // Observable string streams
     public modalExitStream = this.modalExitSubject.asObservable();
     public newModalStream = this.newModalSubject.asObservable();
 
-    constructor(@Inject(MODAL_ANIMATION_METADATA) private animation: ModalAnimationMetadata) {
+    constructor(@Inject(ANIMATION_METADATA_TOKEN) private animation: ModalAnimationMetadata) {
     }
 
     /**
@@ -24,7 +24,7 @@ export class ModalService {
         if (typeof forceClose === 'undefined') {
             forceClose = false;
         }
-        this.modalExitSubject.next({tag: tag, resolve: resolve, forceClose: forceClose});
+        this.modalExitSubject.next({ tag: tag, resolve: resolve, forceClose: forceClose });
     }
 
 
@@ -52,7 +52,9 @@ export class ModalService {
     }
 
     public open(modal: Modal): Observable<ModalExistRef> {
-        return this.load(modal).onExit();
+        return this.load(modal).onExit().pipe(
+            filter((modalExistRef) => modalExistRef.tag === modal.tag)
+        );
     }
 
 }

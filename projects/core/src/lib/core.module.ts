@@ -6,12 +6,12 @@ import {LocalStore, LocalStoreFactory} from './helpers';
 @NgModule()
 export class DBToolsModule {
 
-    static forRoot(dbToolsConfig?: DBToolsConfig): ModuleWithProviders {
+    static forRoot(dbToolsConfig?: DBToolsConfig): ModuleWithProviders<DBToolsModule> {
         return {
             ngModule: DBToolsModule,
             providers: [
-                {provide: Logger, useFactory: LoggerFactory(dbToolsConfig.isProd)},
-                {provide: LocalStore, useFactory: LocalStoreFactory(dbToolsConfig.localStorageName)},
+                {provide: Logger, useFactory: LoggerFactory(dbToolsConfig?.isProd)},
+                {provide: LocalStore, useFactory: LocalStoreFactory(dbToolsConfig?.localStorageName)},
             ]
         };
     }

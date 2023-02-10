@@ -1,8 +1,8 @@
 
-export class RResponse {
-    public readonly code: number;
-    public readonly message: string;
-    public readonly body: RBody;
+export interface RResponse {
+    readonly code: number;
+    readonly message: string;
+    readonly body: RBody;
 }
 
-export class RBody {}
+export class RBody { }

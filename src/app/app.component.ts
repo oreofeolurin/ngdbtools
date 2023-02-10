@@ -1,15 +1,10 @@
-import {Component} from '@angular/core';
-import {Utils} from '@ngdbtools/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'dbts-angular-tools';
-
-    constructor() {
-        this.title = this.title + Utils.secondsBetween(new Date(), new Date(2018, 7, 29));
-    }
+  title = 'ngdbtools';
 }

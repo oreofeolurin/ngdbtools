@@ -1,11 +1,18 @@
 // TODO Figure out how you would handle styling
-main {
+
+.db-modal-dialog-view-wrapper {}
+
+.db-modal-dialog-view {
     background: white;
     width: 500px;
     padding: 25px 40px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-    /*header h4 {
+/*header h4 {
         font-weight: 700
     }
 
@@ -13,13 +20,11 @@ main {
         font-size: $font-size-sm;
     }*/
 
-    footer {
-        display: flex;
-        justify-content: flex-end;
+.db-modal-dialog-content-footer-view {
+    display: flex;
+    justify-content: flex-end;
 
-        button:last-child {
-            margin-left: 15px;
-        }
+    button:last-child {
+        margin-left: 15px;
     }
-
 }
