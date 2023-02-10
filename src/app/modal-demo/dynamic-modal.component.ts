@@ -16,8 +16,6 @@ export class DynamicModalComponent implements OnInit {
     constructor(private modalRef: ModalRef) { }
 
     ngOnInit() {
-        console.log(this.modalRef.getData('hello'));
-        console.log(this.data);
         const sampleData = { creditCardTypeId: 1 };
         //  this.dynamicForm.update(sampleData, this.getFormControls(), [RValidators.matchControl('catName', 'verify')]);
     }

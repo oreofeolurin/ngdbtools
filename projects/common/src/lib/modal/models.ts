@@ -102,11 +102,8 @@ export class Modal {
     }
 
     static createDialog(dialog: Dialog, options?: ModalOptions) {
-        console.log('createDialog', options?.animation?.start);
         if(options?.animation && !options.animation.start) {
-            console.log('Modal animation start is not defined', options.animation.start);
             options.animation.start = DEFAULT_MODAL_ANIMATION_METADATA.start;
-            console.log('Modal animation start is set to default', options.animation.start);
         }
         return new Modal(DialogComponent, DialogData(dialog), options?.closeOnOuterClick, options?.animation);
     }
