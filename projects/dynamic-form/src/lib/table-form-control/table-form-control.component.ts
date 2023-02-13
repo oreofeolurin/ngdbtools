@@ -8,8 +8,8 @@ import {TableFormControl} from '../controls/table-form.control';
     styleUrls: ['./table-form-control.component.scss']
 })
 export class TableFormControlComponent {
-    @Input() control: TableFormControl;
-    @Input('form') parentForm: FormGroup;
+    @Input() control!: TableFormControl;
+    @Input('form') parentForm!: FormGroup;
 
     public formGroups: Array<FormGroup> = [];
 

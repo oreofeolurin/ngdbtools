@@ -1,14 +1,14 @@
 <form [formGroup]="form" [ngClass]="{'submit-attempted': submitAttempted}" class="row" (ngSubmit)="onSubmit()">
 
     <ng-template ngFor let-control [ngForOf]="controls">
-        <div [ngSwitch]="control.controlType" class="col-{{control.column.normal}}" id="dubi-group-{{control.key}}">
-            <div *ngSwitchCase="'group'" class="row my-3">
-                <h5 class="col-12">{{control.label}}</h5>
+        <div [ngSwitch]="control.controlType" class="col-{{control.column.normal}} db-control" id="db-control-{{control.key}}">
+            <div *ngSwitchCase="'group'" class="row db-group-control" [id]="'db-group-control-' + control.key">
+                <div class="col-12 db-group-control-heading">{{control.label}}</div>
                 <p *ngIf="control.description" class="col-12 small">{{control.description}}</p>
                 <ng-template ngFor let-subControl [ngForOf]="control['controls']">
 
-                    <db-form-control class="col-{{subControl.column.normal}}"
-                                      [group]="control.key" [control]="subControl" [form]="form">
+                    <db-form-control class="col-{{subControl.column.normal}}" [group]="control.key"
+                        [control]="subControl" [form]="form">
                     </db-form-control>
 
                     <!-- Force next columns to break to new line -->
@@ -16,17 +16,15 @@
                 </ng-template>
             </div>
 
-            <div *ngSwitchCase="'multiple'" class="my-3">
-                <db-multiple-form-control [control]="control" [form]="form"></db-multiple-form-control>
-            </div>
 
-            <div *ngSwitchCase="'table'" class="my-3" [id]="'dubi-table-' + control.key">
-                <db-table-form-control [control]="control" [form]="form"></db-table-form-control>
-            </div>
+            <db-multiple-form-control *ngSwitchCase="'multiple'" [control]="control" [form]="form"></db-multiple-form-control>
 
-            <div *ngSwitchDefault>
-                <db-form-control [control]="control" [form]="form"></db-form-control>
-            </div>
+
+            <db-table-form-control *ngSwitchCase="'table'" [control]="control" [form]="form"></db-table-form-control>
+
+
+            <db-form-control *ngSwitchDefault [control]="control" [form]="form"></db-form-control>
+
 
         </div>
 

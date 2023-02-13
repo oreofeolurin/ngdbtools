@@ -1,13 +1,14 @@
+@import "../../styles/main";
 
-
-.form-group {
+db-dynamic-form db-form-control .form-group {
     // width: 300px;
     label {
-        font-size: 12px;
+        font-size: $font-size-sm;
         font-weight: bold;
-        &.mat-radio-label {
-            font-weight: normal;
-        }
+    }
+
+    .mat-mdc-radio-button label {
+        font-weight: normal;
     }
 
     .file-upload {
@@ -17,11 +18,18 @@
         }
 
         label.btn {
+            width: 150px;
+            font-weight: normal;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             margin-left: -2px;
-            border: 1px solid #ccc;
+            border: 1px solid $gray-400
         }
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
     }
 
     //CSS Trick to remove spinners from input - https://css-tricks.com/snippets/css/turn-off-number-input-spinners/
@@ -31,9 +39,8 @@
         margin: 0;
     }
 
+    input.no-number-spinner[type=number] {
+        -moz-appearance:textfield;
+    }
 
-}
-
-.download-button .mat-icon {
-    transform: scale(0.8);
 }

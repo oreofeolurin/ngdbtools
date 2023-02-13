@@ -1,0 +1,9 @@
+<section class="my-5 mx-auto col-6">
+    <h3 class="mb-3">Example of dynamic form</h3>
+
+    <db-dynamic-form (valueChanges)="onValueChanges($event)" (ngSubmit)="onSubmit($event)"></db-dynamic-form>
+
+    <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button class="btn btn-primary" (click)="close()">Close</button>
+    
+</section>

@@ -1,11 +1,15 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
 
-export class TextareaFormControl extends FormControlBase<string> {
-    controlType = 'textarea';
-    rows = 3;
+export interface TextareaFormControlOptions extends FormControlBaseOptions {
+    rows?: number;
+}
 
-    constructor(options: {} = {}) {
+export class TextareaFormControl extends FormControlBase {
+    override controlType = 'textarea';
+    rows: number;
+    
+    constructor(options: TextareaFormControlOptions = {}) {
         super(options);
-        this.rows = options['rows'] || this.rows;
+        this.rows = options?.rows ?? 3;
     }
 }

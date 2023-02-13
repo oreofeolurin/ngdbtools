@@ -1,7 +1,6 @@
 import {AbstractControl, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
-import {isAlpha, isAlphanumeric, isBoolean, isEmail, isNumberString, length, matches, Validator} from 'class-validator';
+import {isAlpha, isAlphanumeric, isBoolean, isEmail, isNumberString, length, matches } from 'class-validator';
 
-const validator = new Validator();
 
 export class RValidators {
 

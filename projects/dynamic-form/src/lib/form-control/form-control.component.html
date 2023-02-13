@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="form-group"
+<div [formGroup]="form" class="form-group db-form-control" [id]="'db-form-control-' + control.key"
      [hidden]="control.hidden"
      [ngClass]="{
       'is-dirty': (form.controls[control.key].dirty || form.dirty),
@@ -9,7 +9,7 @@
     </label>
 
 
-    <div [ngSwitch]="control.controlType">
+    <div [ngSwitch]="control.controlType" [class]="'db-form-' + control.controlType + '-control' ">
         <input *ngSwitchCase="'textbox'" [formControlName]="control.key" [ngClass]="control.classes"
                [placeholder]="control['placeholder']"
                [id]="control.key" [type]="control['type']" [min]="control['min']"
@@ -61,8 +61,8 @@
             <input class="d-none" (change)="fileChangeEvent($event)" id="input-file-{{control.key}}" type="file"
                    accept="image/*, .pdf"/>
             <div class="d-flex file-upload w-100">
-                <input disabled class="form-control" [formControlName]="control['fileNameKey']"/>
-                <input disabled class="form-control" [hidden]="true" [formControlName]="control.key"/>
+                <input class="form-control" [formControlName]="control['fileNameKey']"/>
+                <input class="form-control" [hidden]="true" [formControlName]="control.key"/>
                 <label for="input-file-{{control.key}}" class="btn btn-light">Choose file</label>
             </div>
         </div>

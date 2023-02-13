@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DynamicModalComponent } from './dynamic-modal.component';
 
 const routes = [
-  { path: '', component: ModalDemoComponent }
+  { path: 'modal', component: ModalDemoComponent }
 ];
 
 const MODAL_ANIMATION_METADATA = modalAnimate(

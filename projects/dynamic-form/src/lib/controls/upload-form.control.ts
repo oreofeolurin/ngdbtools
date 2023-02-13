@@ -1,13 +1,18 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
 
-export class UploadFormControl extends FormControlBase<string> {
-    controlType = 'upload';
+export interface UploadFormControlOptions extends FormControlBaseOptions {
+    type?: string;
+    fileName?: string;
+}
+
+export class UploadFormControl extends FormControlBase {
+    override controlType = 'upload';
     type: string;
-    fileNameKey: string;
+    public fileNameKey: string;
 
-    constructor(options: {} = {}) {
+    constructor(options: UploadFormControlOptions = {}) {
         super(options);
-        this.type = options['type'] || '';
-        this.fileNameKey = options['fileName'] || `${this.key}_fileName` ;
+        this.type = options.type ?? '';
+        this.fileNameKey = options.fileName ?? `${this.key}_fileName` ;
     }
 }

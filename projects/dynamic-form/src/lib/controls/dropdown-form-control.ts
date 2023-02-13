@@ -1,20 +1,20 @@
 import {FormControlBase} from './form-control-base';
 
 
-export class DropdownFormControl extends FormControlBase<string> {
-    controlType = 'dropdown';
+export class DropdownFormControl extends FormControlBase {
+    override controlType = 'dropdown';
     autoComplete = false;
     options: { key: string, value: string, description: string }[] = [];
 
-    constructor(options: {} = {}) {
+    constructor(options: Record<string, any> = {}) {
         super(options);
-        this.options = options['options'] || [];
+        this.options = options['options'] ?? [];
         this.autoComplete = options['autoComplete'] || [];
     }
 
     static toDropdownOptions(dataArray: any, keyName: string, valueName: string | Function = keyName, descriptionStr?: string) {
         const arr = dataArray || [];
-        return arr.map(data => {
+        return arr.map((data: any) => {
             const value = DropdownFormControl.formatValue(data, valueName);
             const description = DropdownFormControl.formatValue(data, descriptionStr);
             return {key: data[keyName], value, description};
@@ -22,7 +22,7 @@ export class DropdownFormControl extends FormControlBase<string> {
 
     }
 
-    static formatValue(data, value) {
+    static formatValue(data: any, value: any ) {
         if (typeof value === 'function') {
             return value(data);
         } else if (typeof value === 'string') {
@@ -32,7 +32,7 @@ export class DropdownFormControl extends FormControlBase<string> {
         }
     }
 
-    static fromTemplate(data: object, template: string) {
+    static fromTemplate(data: Record<string, any>, template: string) {
         const dataKeys = Object.keys(data);
         let templateStr = template;
         dataKeys.forEach(key => {

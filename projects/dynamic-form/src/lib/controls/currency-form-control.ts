@@ -1,11 +1,14 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
 
-export class CurrencyFormControl extends FormControlBase<string> {
-    controlType = 'currency';
-    options = {prefix: '₦ ', align: 'left' };
+export interface CurrencyFormControlOptions extends FormControlBaseOptions {
+    options?: {prefix: string, align: string};
+}
+export class CurrencyFormControl extends FormControlBase {
+    override controlType = 'currency';
+    options = { prefix: '₦ ', align: 'left' };
 
-    constructor(options: {} = {}) {
+    constructor(options: CurrencyFormControlOptions = {}) {
         super(options);
-        this.options = options['options'] || this.options;
+        this.options = options.options ?? this.options;
     }
 }

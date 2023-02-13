@@ -1,3 +1,6 @@
+@use 'bootstrap/scss/functions';
+@use 'bootstrap/scss/variables';
+
 /// Reset Bootstrap variables
 
 // Color system
@@ -7,7 +10,7 @@ $primary:       #0099fb !default; // #0057ff
 $secondary:     $yellow-200 !default;
 $link-color: #08c !default;*/
 
-
+/*
 $orange: #ed8600;
 $red: #f62a09;
 $green: #afd600;
@@ -42,10 +45,6 @@ $font-family-base: $font-family-museo !default;
 $input-btn-focus-width:       .1rem !default;
 
 $zindex-progressbar:   1100 !default;
-
+*/
 
 /// Import Bootstrap tools
-
-@import
-'functions',
-'b-variables';

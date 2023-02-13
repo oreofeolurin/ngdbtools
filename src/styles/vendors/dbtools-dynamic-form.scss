@@ -1,0 +1,146 @@
+// # Forms
+
+form, .dynamic-form-control {
+    //font-family: $font-family-base;
+
+    .btn {
+        padding: 5px 15px;
+        font-weight: bold;
+        font-size: 12px;
+        border-radius: 2px;
+        border:1px solid #000;
+    }
+
+    .form-group > input, textarea, .form-control {
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .form-group label.important:after {
+        content: "*";
+        color: red;
+        margin-left: 3px;
+        font-weight: bold;
+    }
+    
+    .submit-attempted .form-group.has-errors .file-upload label.btn {
+        border: 1px solid red;
+    }
+    
+    .submit-attempted .form-group .file-upload label.btn {
+        border: 1px solid green;
+    }
+    
+    .invalid-feedback {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .db-control {
+        margin-bottom: 40px;
+
+        div[class$="control-heading"] {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+
+
+
+// Angular Material
+.mat-mdc-menu-panel {
+    max-width: 450px !important;
+    .mat-mdc-menu-item {
+        font-size: 12px * 0.9;
+        .description {
+            display: block;
+            margin-top: -7px;
+            color: #000;
+        }
+        .mat-icon {
+            margin-right: 2px;
+            vertical-align: text-bottom;
+            transform: scale(0.9);
+
+        }
+
+    }
+}
+
+.mat-mdc-select {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px 0;
+
+    &:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+       // -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+      //  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+    }
+}
+
+.mat-mdc-select .mat-mdc-select-value {
+    padding: 5px 10px;
+    font-size: 12px;
+ }
+
+ .mat-mdc-select-arrow-wrapper {
+    margin-right: 10px;
+ }
+
+
+.mat-mdc-select-disabled {
+    background: #ccc;
+}
+
+.mat-radio-button {
+    font-size: 12 * 0.9;
+    //font-family: $font-family-sans-serif;
+    margin-right: 10px;
+}
+
+.mat-mdc-option {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.mat-mdc-option-active  .mdc-list-item__primary-text {
+    color: #000;
+    font-weight: bold;
+}
+
+.cdk-overlay-container {
+    .mat-mdc-select-panel:not([class*=mat-elevation-z]),
+    .mat-mdc-autocomplete-panel:not([class*=mat-elevation-z]) {
+        box-shadow: none;
+        border: 2px solid #ccc;
+
+        .mat-option {
+            font-size: 12px;
+        }
+    }
+
+
+    .mat-menu-panel {
+       // box-shadow: none;
+      //  border: 1px solid $gray-400;
+
+        .mat-menu-content:not(:empty) {
+            padding-top: 8px;
+            padding-bottom: 8px;
+
+            .mat-menu-item {
+             //   line-height: 30px;
+           //     height: 30px;
+            }
+        }
+    }
+
+}

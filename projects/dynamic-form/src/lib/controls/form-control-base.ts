@@ -3,8 +3,8 @@ export interface FormControlColumn {
     break?: boolean;
 }
 
-export interface FormControlBaseOptions<T> {
-    value?: T;
+export interface FormControlBaseOptions {
+    value?: string;
     key?: string;
     label?: string;
     required?: boolean;
@@ -23,8 +23,8 @@ export interface FormControlBaseOptions<T> {
     classes?: string[];
 }
 
-export class FormControlBase<T> {
-    value: T;
+export class FormControlBase {
+    value: string;
     key: string;
     label: string;
     required: boolean;
@@ -42,23 +42,23 @@ export class FormControlBase<T> {
     column: FormControlColumn = {normal: 6, break: false};
     classes: string[];
 
-    constructor(options: FormControlBaseOptions<T> = {}) {
-        this.value = options.value;
-        this.key = options.key || '';
-        this.label = options.label || '';
+    constructor(options: FormControlBaseOptions = {}) {
+        this.value = options.value ?? '';
+        this.key = options.key ?? '';
+        this.label = options.label ?? '';
         this.required = !!options.required;
         this.disabled = !!options.disabled;
         this.disabledIfExist = !!options.disabledIfExist;
         this.hidden = !!options.hidden;
         this.order = options.order === undefined ? 1 : options.order;
-        this.controlType = options.controlType || '';
-        this.placeholder = options.placeholder || '';
-        this.invalidFeedback = options.invalidFeedback || '';
-        this.helpText = options.helpText || '';
-        this.description = options.description || '';
-        this.validators = options.validators || [];
+        this.controlType = options.controlType ?? '';
+        this.placeholder = options.placeholder ?? '';
+        this.invalidFeedback = options.invalidFeedback ?? '';
+        this.helpText = options.helpText ?? '';
+        this.description = options.description ?? '';
+        this.validators = options.validators ?? [];
         this.validate = typeof options.validate === 'boolean' ? options.validate : this.validate;
-        this.column = typeof options.column === 'number' ? {normal: options.column} : options.column || this.column;
-        this.classes = options.classes || [];
+        this.column = typeof options.column === 'number' ? {normal: options.column} : options.column ?? this.column;
+        this.classes = options.classes ?? [];
     }
 }

@@ -11,7 +11,7 @@ import {RValidators} from '@ngdbtools/core';
     templateUrl: './dynamic-form.component.html'
 })
 export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
-    @Input() controls: FormControlBase<any>[] = [];
+    @Input() controls: any= [];
     @Input() defaults: object = {};
     @Input() validators: ValidatorFn[] = [];
     @Input() markAsDirty = false;
@@ -20,8 +20,8 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
     @Output() valueChanges = new EventEmitter<any>();
     @Output() ngSubmit = new EventEmitter<any>();
 
-    public form: FormGroup;
-    private subscription: Subscription;
+    public form!: FormGroup;
+    private subscription?: Subscription;
 
     constructor() {
     }
@@ -65,7 +65,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
         return this;
     }
 
-    setControls(controls: FormControlBase<any>[]) {
+    setControls(controls: FormControlBase[]) {
         this.controls = controls;
         return this;
     }
@@ -89,7 +89,7 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     update(defaults: object = this.defaults,
-           controls: FormControlBase<any>[] = this.controls,
+           controls: FormControlBase[] = this.controls,
            validators: ValidatorFn[] = this.validators) {
         this.defaults = Object.assign({}, this.defaults, defaults);
         this.controls = controls;
@@ -108,8 +108,8 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     setErrorsOnControl(path: string, errors: object) {
-        this.form.get(path).setErrors(errors);
-        this.form.get(path).markAsDirty();
+        this.form.get(path)?.setErrors(errors);
+        this.form.get(path)?.markAsDirty();
         // const newForm = this.form;
         // this.form = newForm;
         // console.log("1.");
@@ -117,6 +117,6 @@ export class DynamicFormComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.subscription.unsubscribe();
+        this.subscription?.unsubscribe();
     }
 }

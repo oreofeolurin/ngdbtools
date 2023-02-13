@@ -1,9 +1,9 @@
-<div [ngClass]="{'addition-attempted': additionAttempted}">
-    <h5>{{control.label}}</h5>
+<div [ngClass]="{'addition-attempted': additionAttempted}" class="db-multiple-control" [id]="'db-multiple-control-' + control.key">
+    <div class="db-multiple-control-heading">{{control.label}}</div>
     <p class="description">{{control.description}}</p>
 
 
-    <div *ngFor="let form of formGroups; let i = index" class="d-flex flexed-form-group">
+    <div *ngFor="let form of formGroups; let i = index" class="flexed-form-group">
         <div class="mt-2 row">
             <ng-template ngFor let-subControl [ngForOf]="control['controls']">
                 <div class="col-{{subControl.column.normal}}">
@@ -14,7 +14,7 @@
                 <div *ngIf="subControl.column.break" class="w-100"></div>
             </ng-template>
         </div>
-        <small *ngIf="!control.required || formGroups.length > 1" class="remove-group mt-2"
+        <small *ngIf="!control.required || formGroups.length > 1" class="remove-group"
                (click)="removeFormGroup(i)">
             <mat-icon svgIcon="close"></mat-icon>
         </small>

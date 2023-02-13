@@ -1,23 +1,23 @@
-import {FormControlBase} from './form-control-base';
+import { FormControlBase } from './form-control-base';
 
-export class TableFormControl extends FormControlBase<string> {
-    controlType = 'table';
-    columns: {name: string, width: string}[];
+export class TableFormControl extends FormControlBase {
+    override controlType = 'table';
+    columns: { name: string, width: string }[];
     rows: TableRowFormControl[];
 
-    constructor(options: {} = {}) {
+    constructor(options: Record<string, any> = {}) {
         super(options);
-        this.rows = options['rows'] || [];
-        this.columns = options['columns'] || [];
+        this.rows = options['rows'] ?? [];
+        this.columns = options['columns'] ?? [];
     }
 }
 
-export class TableRowFormControl extends FormControlBase<string> {
-    controlType = 'table-row';
-    controls: FormControlBase<any>[];
+export class TableRowFormControl extends FormControlBase {
+    override controlType = 'table-row';
+    controls: FormControlBase[];
 
-    constructor(options: {} = {}) {
+    constructor(options: Record<string, any> = {}) {
         super(options);
-        this.controls = options['controls'] || [];
+        this.controls = options['controls'] ?? [];
     }
 }

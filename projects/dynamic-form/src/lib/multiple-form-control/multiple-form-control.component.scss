@@ -1,0 +1,47 @@
+@import "../../styles/main";
+
+.db-multiple-control {
+    .description {
+        font-size: $font-size-sm;
+    }
+
+    .add-another {
+        cursor: pointer;
+        color: $gray-500;
+        font-weight: 700;
+
+        &:hover {
+            color: $black;
+
+            .mat-icon {
+                color: $green;
+            }
+
+        }
+
+        .mat-icon {
+            transform: scale(0.9);
+            vertical-align: bottom;
+        }
+    }
+
+    .remove-group {
+        cursor: pointer;
+        right: -20px;
+        margin-top: -50px;
+        position: absolute;
+        visibility: hidden;
+        color: $red;
+
+        .mat-icon {
+            transform: scale(0.8);
+        }
+    }
+
+    .flexed-form-group:hover {
+        .mat-icon {
+            visibility: visible;
+        }
+    }
+
+}

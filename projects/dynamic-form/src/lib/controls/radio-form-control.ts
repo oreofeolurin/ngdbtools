@@ -1,12 +1,16 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
+
+export interface RadioFormControlOptions extends FormControlBaseOptions {
+    options?: {key: string, value: string}[];
+}
 
 
-export class RadioFormControl extends FormControlBase<string> {
-    controlType = 'radio';
+export class RadioFormControl extends FormControlBase{
+    override controlType = 'radio';
     options: {key: string, value: string}[] = [];
 
-    constructor(options: {} = {}) {
+    constructor(options: RadioFormControlOptions = {}) {
         super(options);
-        this.options = options['options'] || [];
+        this.options = options.options ?? [];
     }
 }

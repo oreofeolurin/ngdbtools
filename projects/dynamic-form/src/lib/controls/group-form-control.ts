@@ -1,14 +1,17 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
 
+export interface GroupFormControlOptions extends FormControlBaseOptions {
+    controls?: FormControlBase[];
+}
 
-export class GroupFormControl extends FormControlBase<string> {
-    controlType = 'group';
-    controls: FormControlBase<any>[];
+export class GroupFormControl extends FormControlBase {
+    override controlType = 'group';
+    controls: FormControlBase[];
 
-    constructor(options: {} = {}) {
+    constructor(options: GroupFormControlOptions = {}) {
         super(options);
-        this.controls = options['controls'] || [];
-        this.column = options['column'] ? this.column : {normal: 12};
+        this.controls = options.controls ?? [];
+        this.column = options.column ? this.column : {normal: 12};
     }
 }
 

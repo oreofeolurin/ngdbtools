@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {FormControlBase} from '../controls/form-control-base';
 import {merge} from 'rxjs';
 import {Subscription} from 'rxjs';
 import {FormControlUtils} from '../form-control/form-control.utils';
@@ -11,11 +10,11 @@ import {FormControlUtils} from '../form-control/form-control.utils';
     styleUrls: ['./multiple-form-control.component.scss']
 })
 export class MultipleFormControlComponent implements OnInit, OnChanges, OnDestroy {
-    @Input() control: FormControlBase<any>;
-    @Input('form') parentForm: FormGroup;
+    @Input() control!: any;
+    @Input('form') parentForm!: FormGroup;
     public formGroups: Array<FormGroup> = [];
     public additionAttempted = false;
-    private subscription: Subscription;
+    private subscription?: Subscription;
 
 
     constructor() {}
@@ -26,7 +25,7 @@ export class MultipleFormControlComponent implements OnInit, OnChanges, OnDestro
 
     initiateFormGroups() {
         this.formGroups = [];
-        const defaultsArray = this.parentForm.get(this.control.key).value;
+        const defaultsArray = this.parentForm.get(this.control.key)?.value;
         if (Array.isArray(defaultsArray) && defaultsArray.length > 0) {
 
             defaultsArray.forEach(obj => {
@@ -63,9 +62,9 @@ export class MultipleFormControlComponent implements OnInit, OnChanges, OnDestro
 
     private setFormValue() {
         if (this.validateForm()) {
-            this.parentForm.get(this.control.key).setValue(this.getFormObj());
+            this.parentForm.get(this.control.key)?.setValue(this.getFormObj());
         } else {
-            this.parentForm.get(this.control.key).setValue('');
+            this.parentForm.get(this.control.key)?.setValue('');
         }
     }
 

@@ -1,9 +1,11 @@
 {
-  "name": "dynamic-form",
-  "version": "0.0.1",
+  "name": "@ngdbtools/dynamic-form",
+  "version": "0.2.0-beta.1",
   "peerDependencies": {
     "@angular/common": "^15.1.0",
-    "@angular/core": "^15.1.0"
+    "@angular/core": "^15.1.0",
+    "@ngdbtools/core": "^0.2.13-beta.2",
+    "@ngdbtools/common": "^0.2.3-beta.2"
   },
   "dependencies": {
     "tslib": "^2.3.0"

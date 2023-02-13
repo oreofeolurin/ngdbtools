@@ -1,11 +1,16 @@
-import {FormControlBase} from './form-control-base';
+import {FormControlBase, FormControlBaseOptions} from './form-control-base';
 
-export class LabelTextControl extends FormControlBase<string> {
-    controlType = 'label-text';
+export interface LabelTextControlOptions extends FormControlBaseOptions {
+    text?: string;
+}
+
+
+export class LabelTextControl extends FormControlBase {
+    override controlType = 'label-text';
     text: string;
 
-    constructor(options: {} = {}) {
+    constructor(options: LabelTextControlOptions = {}) {
         super(options);
-        this.text = options['text']  || this.column;
+        this.text = options.text ?? '';
     }
 }

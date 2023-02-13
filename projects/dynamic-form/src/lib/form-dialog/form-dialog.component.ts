@@ -9,7 +9,7 @@ import {ModalRef, Modal, DialogAction} from '@ngdbtools/common';
     styleUrls: ['./form-dialog.component.scss']
 })
 export class FormDialogComponent implements OnInit {
-    @ViewChild(DynamicFormComponent) dynamicForm: DynamicFormComponent;
+    @ViewChild(DynamicFormComponent) dynamicForm!: DynamicFormComponent;
     public dialog: FormDialog;
 
     constructor(injector: Injector, private modalRef: ModalRef) {

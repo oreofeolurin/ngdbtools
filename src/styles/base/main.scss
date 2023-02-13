@@ -1,65 +1,66 @@
 // # Forms
 
 form, .dynamic-form-control {
-    font-family: $font-family-base;
+    //font-family: $font-family-base;
 
     .btn {
         padding: 5px 15px;
         font-weight: bold;
-        font-size: $font-size-sm;
+        font-size: 12px;
         border-radius: 2px;
     }
 }
 
 .form-group > input, textarea, .form-control {
-    font-family: $font-family-sans-serif;
-    border: 1px solid $gray-400;
+    border: 1px solid #ccc;
     border-radius: 2px;
     padding: 5px 10px;
-    font-size: $font-size-sm;
+    font-size: 12px;
 }
 
 .form-group label.important:after {
     content: "*";
-    color: $danger;
+    color: red;
     margin-left: 3px;
     font-weight: bold;
 }
 
 .submit-attempted .form-group.has-errors .file-upload label.btn {
-    border: 1px solid $red;
+    border: 1px solid red;
 }
 
 .submit-attempted .form-group .file-upload label.btn {
-    border: 1px solid $primary;
+    border: 1px solid green;
 }
+
+
 
 a.link:not([href]) {
     cursor: pointer;
     font-weight: 600;
-    color: $primary;
+    color: green;
     &:hover {
         text-decoration: underline !important;
-        color: darken($primary, 20%)
+        color: darken(green, 20%)
     }
 }
 
 a.not-link {
-    color: $black;
+    color: #000;
     &:hover {
         text-decoration: none !important;
     }
 }
 
 // Angular Material
-.mat-menu-panel {
+.mat-mdc-menu-panel {
     max-width: 450px !important;
-    .mat-menu-item {
-        font-size: $font-size-sm * 0.9;
+    .mat-mdc-menu-item {
+        font-size: 12px * 0.9;
         .description {
             display: block;
             margin-top: -7px;
-            color: $gray-500;
+            color: #000;
         }
         .mat-icon {
             margin-right: 2px;
@@ -74,7 +75,7 @@ a.not-link {
 #progress-container {
     position: fixed;
     width: 100%;
-    z-index: $zindex-progressbar;
+    z-index: 1100 default;
     .mat-progress-bar {
         height: 3px;
     }
@@ -84,16 +85,16 @@ a.not-link {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: $zindex-tooltip;
+    z-index: 1080;
     display: flex;
     justify-content: center;
 
     .error-bar {
-        background: $red;
+        background: red;
     }
 
     .success-bar {
-        background: $dark-green;
+        background: green;
     }
 
     .error-bar, .success-bar {
@@ -102,8 +103,8 @@ a.not-link {
         padding: 7px;
         text-align: center;
         color: white;
-        font-family: $font-family-sans-serif;
-        font-size: $font-size-sm;
+        ////font-family: $font-family-sans-serif;
+        font-size: 12px;
         font-weight: bold;
 
         .error-close {
@@ -119,7 +120,7 @@ a.not-link {
     right: 0;
     width: 350px;
     height: auto;
-    z-index: $zindex-tooltip;
+    z-index: 1080;
     display: flex;
     justify-content: center;
 
@@ -128,10 +129,10 @@ a.not-link {
         height: 100%;
         text-align: left;
         padding: 10px;
-        background: opacify($red, 0.2);
+        background: opacify(red, 0.2);
         color: white;
-        font-family: $font-family-sans-serif;
-        font-size: $font-size-sm;
+        ////font-family: $font-family-sans-serif;
+        font-size: 12;
         font-weight: bold;
         ul {
             padding: 0;
@@ -152,9 +153,6 @@ a.not-link {
     }
 }
 
-button.btn {
-    font-family: $font-family-sans-serif;
-}
 
 .no-margin {
     margin: 0;
@@ -164,40 +162,59 @@ button.btn {
     padding: 0;
 }
 
-.mat-select {
-    border: 1px solid $gray-400;
-    padding: 5px 10px;
-    font-size: $font-size-sm;
+.mat-mdc-select {
+    border: 1px solid #ccc;
     border-radius: 2px;
+    padding: 5px 0;
 
     &:focus {
         color: #495057;
         background-color: #fff;
         border-color: #80bdff;
         outline: 0;
-        -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
-        box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+       // -webkit-box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+      //  box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
     }
 }
 
-.mat-select-disabled {
-    background: $gray-300;
+.mat-mdc-select .mat-mdc-select-value {
+    padding: 5px 10px;
+    font-size: 12px;
+ }
+
+ .mat-mdc-select-arrow-wrapper {
+    margin-right: 10px;
+ }
+
+
+.mat-mdc-select-disabled {
+    background: #ccc;
 }
 
 .mat-radio-button {
-    font-size: $font-size-sm * 0.9;
-    font-family: $font-family-sans-serif;
+    font-size: 12 * 0.9;
+    //font-family: $font-family-sans-serif;
     margin-right: 10px;
 }
 
+.mat-mdc-option {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.mat-mdc-option-active  .mdc-list-item__primary-text {
+    color: #000;
+    font-weight: bold;
+}
+
 .cdk-overlay-container {
-    .mat-select-panel:not([class*=mat-elevation-z]),
-    .mat-autocomplete-panel:not([class*=mat-elevation-z]) {
+    .mat-mdc-select-panel:not([class*=mat-elevation-z]),
+    .mat-mdc-autocomplete-panel:not([class*=mat-elevation-z]) {
         box-shadow: none;
-        border: 2px solid $gray-400;
+        border: 2px solid #ccc;
 
         .mat-option {
-            font-size: $font-size-sm;
+            font-size: 12px;
         }
     }
 
@@ -221,20 +238,20 @@ button.btn {
 
 //
 .tab-content {
-    background-color: $gray-50; // #EFF8EC;
+    background-color: #EFF8EC;
 }
 
 // IE Message
 
 .ieMessageWarning {
-    background: $red;
+    background: red;
     padding: 10px;
-    font-family: $font-family-base;
-    font-size: $font-size-sm;
+    //font-family: $font-family-base;
+    font-size: 12px;
     font-weight: bold;
     color: #fff;
     width: 100%;
-    z-index: $zindex-progressbar;
+    z-index:  1100 ;
 }
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

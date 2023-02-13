@@ -1,31 +1,35 @@
-<h5>{{control.label}}</h5>
-<p class="description">{{control.description}}</p>
+<div class="db-table-control" [id]="'db-table-control-' + control.key">
+    <div class="db-table-control-heading">{{control.label}}</div>
+    <p class="description">{{control.description}}</p>
 
-<table class="table mb-0">
-    <thead>
-    <tr>
-        <th *ngFor="let column of control.columns" [ngStyle]="{width: column.width}"> {{column.name}}</th>
-    </tr>
-    </thead>
-    <tbody>
+    <table class="db-table mb-0">
+        <thead>
+            <tr>
+                <th *ngFor="let column of control.columns" [ngStyle]="{width: column.width}"> {{column.name}}</th>
+            </tr>
+        </thead>
+        <tbody>
 
-    <tr *ngFor="let row of control.rows">
-        <ng-template ngFor let-subControl [ngForOf]="row.controls">
-            <td [ngSwitch]="subControl.controlType">
-                <ng-template [ngSwitchCase]="'label-text'">
-                    <div [innerHtml]="subControl['text']"></div>
+            <tr *ngFor="let row of control.rows">
+                <ng-template ngFor let-subControl [ngForOf]="row.controls">
+                    <td [ngSwitch]="subControl.controlType">
+                        <ng-template [ngSwitchCase]="'label-text'">
+                            <div [innerHtml]="subControl.helpText"></div>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="'textbox'">
+                            <db-form-control [form]="parentForm" [control]="subControl"></db-form-control>
+                        </ng-template>
+
+                        <ng-template [ngSwitchCase]="'textarea'">
+                            <db-form-control [form]="parentForm" [control]="subControl"></db-form-control>
+                        </ng-template>
+                    </td>
                 </ng-template>
+            </tr>
 
-                <ng-template [ngSwitchCase]="'textbox'">
-                    <db-form-control [form]="parentForm" [control]="subControl"></db-form-control>
-                </ng-template>
+        </tbody>
+    </table>
 
-                <ng-template [ngSwitchCase]="'textarea'">
-                    <db-form-control [form]="parentForm" [control]="subControl"></db-form-control>
-                </ng-template>
-            </td>
-        </ng-template>
-    </tr>
 
-    </tbody>
-</table>
+</div>

@@ -16,11 +16,11 @@
       "@ngdbtools/core/*": [
         "dist/core/*"
       ],
-      "common": [
-        "dist/common"
-      ],
-      "dynamic-form": [
+      "@ngdbtools/dynamic-form": [
         "dist/dynamic-form"
+      ],
+      "@ngdbtools/dynamic-form/*": [
+        "dist/dynamic-form/*"
       ],
       "dynamic-table": [
         "dist/dynamic-table"

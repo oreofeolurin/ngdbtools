@@ -1,15 +1,21 @@
-@charset "UTF-8";
+
+
+//@charset "UTF-8";
+/* You can add global styles to this file, and also import other style files */
 
 @import 'styles/vendors/normalize';
+@import 'styles/vendors/material';
+@import 'styles/vendors/dbtools-dynamic-form.scss';
 
-/* You can add global styles to this file, and also import other style files */
+
 
 
 // 1. Configuration and helpers
-/*@import
-'styles/abstracts/variables',
-'styles/abstracts/mixins';
+//@use 'styles/abstracts/variables';
 
+//@import "./styles/vendors/bootstrap";
+
+/*
 // 2. Vendors
 @import
 'styles/vendors/bootstrap',
@@ -31,7 +37,8 @@
 'base/helpers';*/
 
 // 4. Layout-related sections
-/*@import
+/*
+@import
 'styles/layout/shell',
 'styles/layout/table',
     // 'layout/section'
@@ -41,7 +48,7 @@
 @import
 'styles/components/simulation-slider',
 'styles/components/buttons',
-'styles/components/hint/hint',
+//'styles/components/hint/hint',
     //'components/app-loader',
     //'components/svg-loader',
 'styles/components/spinner';
@@ -59,3 +66,6 @@
 @import
 'themes/default';*/
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
